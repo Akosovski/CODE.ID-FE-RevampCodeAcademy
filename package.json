@@ -1,7 +1,37 @@
 {
+  "name": "batch24nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@types/node": "20.4.2",
+    "@types/react": "18.2.15",
+    "@types/react-dom": "18.2.7",
+    "@types/redux-logger": "^3.0.9",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "cookies-next": "^2.1.2",
+    "dependencies": "^0.0.1",
+    "eslint": "8.45.0",
+    "eslint-config-next": "13.4.10",
+    "formik": "^2.4.2",
     "next": "^13.4.16",
+    "postcss": "8.4.26",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.2.3",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.1.6"
   }
 }
