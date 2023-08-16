@@ -13,6 +13,6 @@ export default function TalentList() {
     }, []);
 
     return (
-        'Testing'
+        'Test'
     );
 }
