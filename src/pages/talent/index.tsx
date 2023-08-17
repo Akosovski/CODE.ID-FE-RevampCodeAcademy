@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react';
 import talent from '../api/talent';
 import '../styles/globals.css';
@@ -19,7 +20,7 @@ export default function TalentList() {
       <Layout>
         <div className="grid grid-flow-col">
             <div className="col-span-1">
-                <Sidebar />
+                <Sidebar/>
             </div>
 
             <div className="col-span-8">
@@ -27,7 +28,7 @@ export default function TalentList() {
                     <h1 className="text-white">Placement</h1>
                 </div>
                 
-                <form> 
+                <form className="border-b-2 border-gray-500 pb-2"> 
                     <div className="flex h-20 p-4 justify-center me-20">
                         <div className="p-4 text-medium">
                             <p>Search by category</p>
@@ -58,72 +59,84 @@ export default function TalentList() {
                     </div>
                 </form>
                 
-                # Content #
+                <h1 className="p-10 pt-5 pb-1 text-lg">Pilih talent untuk placement</h1>
+                
+                <div className="flex p-10 gap-10 pt-5">
+                    <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="#">
+                            <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="example" />
+                        </a>
+                        <div className="p-5">
+                            <a href="#">
+                                <h5 className="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Full Name</h5>
+                            </a>
+                            <p className="text-center mb-3 text-lg font-normal text-gray-700 dark:text-gray-400">Status</p>
 
-                <div className="flex">
-                    <div className="sm:-mx-6 lg:-mx-8">
-                        <div className="py-2 sm:px-6 lg:px-8">
-                            <div className="overflow-hidden">
-                            <table className="min-w-full text-left text-sm font-light">
-                                <thead className="border-b font-medium dark:border-neutral-500">
-                                <tr>
-                                    <th className="px-6 py-4">Entity ID</th>
-                                    <th className="px-6 py-4">National ID</th>
-                                    <th className="px-6 py-4">Birth Date</th>
-                                    <th className="px-6 py-4">Marital Status</th>
-                                    <th className="px-6 py-4">Gender</th>
-                                    <th className="px-6 py-4">Hire Date</th>
-                                    <th className="px-6 py-4">Vacation Hours</th>
-                                    <th className="px-6 py-4">Sick Hours</th>
-                                    <th className="px-6 py-4">Employee Type</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        Talent && Talent.map(item => {
-                                            return (
-                                                <>
-                                                <tr>
-                                                    <th className="whitespace-nowrap px-6 py-4">
-                                                        {item.empEntityId} 
-                                                    </th>
-                                                    <td className="whitespace-nowrap px-6 py-4">
-                                                        {item.empNationalId}
-                                                    </td>
-                                                    <td className="whitespace-nowrap px-6 py-4">
-                                                        {item.empBirthDate}
-                                                    </td>
-                                                    <td className="whitespace-nowrap px-6 py-4">
-                                                        {item.empMaritalStatus}
-                                                    </td>
-                                                    <td className="whitespace-nowrap px-6 py-4">
-                                                        {item.empGender}
-                                                    </td>
-                                                    <td className="whitespace-nowrap px-6 py-4">
-                                                        {item.empHireDate}
-                                                    </td>
-                                                    <td className="whitespace-nowrap px-6 py-4">
-                                                        {item.empVacationHours}
-                                                    </td>
-                                                    <td className="whitespace-nowrap px-6 py-4">
-                                                        {item.empSickleaveHours}
-                                                    </td>
-                                                    <td className="whitespace-nowrap px-6 py-4">
-                                                        {item.empType}
-                                                    </td>
-                                                </tr>
-                                                </>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
+                            <div className="flex">
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Material</p>
+                            </div>
+                            
+                            <div className="flex mt-3">
+                                <a href="#" className="grow inline-flex justify-center px-3 py-2 text-md font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Join Placement
+                                </a>
+                                <a href="#" className="ms-5 m-2 text-white hover:underline">
+                                    More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="#">
+                            <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="example" />
+                        </a>
+                        <div className="p-5">
+                            <a href="#">
+                                <h5 className="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Full Name</h5>
+                            </a>
+                            <p className="text-center mb-3 text-lg font-normal text-gray-700 dark:text-gray-400">Status</p>
+
+                            <div className="flex">
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Material</p>
+                            </div>
+                            
+                            <div className="flex mt-3">
+                                <a href="#" className="grow inline-flex justify-center px-3 py-2 text-md font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Join Placement
+                                </a>
+                                <a href="#" className="ms-5 m-2 text-white hover:underline">
+                                    More
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                # End of Content #
+                <div className="flex h-14 p-4 bg-white justify-center mb-7">
+                    <nav aria-label="Page navigation example">
+                        <ul className="inline-flex -space-x-px text-base h-10">
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
             </div>
         </div>
         

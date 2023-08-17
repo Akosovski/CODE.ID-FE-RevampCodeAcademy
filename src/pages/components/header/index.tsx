@@ -5,22 +5,20 @@ export default function Footer() {
     return (
       <div>
         <header className="bg-white dark:bg-gray-900">
-          <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-900">
+          <nav className="border-b-2 border-gray-700 pb-2 px-4 lg:px-6 py-2.5 bg-gray-900">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <div className="flex items-center">
                         <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
                         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Code Academy</span>
                     </div>
                     <div className="flex items-center lg:order-2">
-                        <p className="text-gray-800 dark:text-white font-medium rounded-lg text-sm px-3 lg:px-4 py-2 lg:py-2.5 mr-2">Username</p>
+                        <p className="text-gray-800 dark:text-white font-medium rounded-lg text-md px-3 lg:px-4 py-2 lg:py-2.5 mr-2">Username</p>
                         <a href="#" className="py-2 lg:py-2.5 mr-2">
                           <img src="https://cdn.discordapp.com/attachments/995173807750926346/1141782116955345027/Profile.png" className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
                         </a>
                     </div>
                 </div>
           </nav>
-
-          <hr/>
 
           <nav className="flex" aria-label="Breadcrumb">
             <ol className="inline-flex items-center px-7 lg:px-6 py-2.5 space-x-1 md:space-x-3">
