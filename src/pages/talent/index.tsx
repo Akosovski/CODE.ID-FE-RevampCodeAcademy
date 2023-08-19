@@ -1,18 +1,72 @@
+/* eslint-disable @next/next/no-sync-scripts */
+/* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from 'react';
-import talent from '../api/talent';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import GetTalent from '../api/talent';
 import Layout from '../components/layout/Layout';
+import { GetTalentReq } from "@/redux-saga/action/talentAction";
+import prodile from '@/pages/images/dummy_profile.png';
+import Image from 'next/image';
+import profile from '@/pages/images/dummy_profile.png';
+import { IconButton, Typography } from "@material-tailwind/react";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
 
-export default function TalentList() {
-    const [Talent, setTalent] = useState<any[]>([]);
+export default function TalentList(props: any) {
+    const [searchValue, setSearchValue] = useState('');
+    const [status, setStatus] = useState('');
+    const [statusLabel, setStatusLabel] = useState('Status');
+    const [dropdownStatusOpen, setDropdownStatusOpen] = useState(false);
+    const [createDisplay, setCreateDisplay] = useState(false);
+    const [viewDisplay, setViewDisplay] = useState(false);
+    const [employeeId, setEmployeeId] = useState('');
+    const [searchDisplay, setSearchDisplay] = useState(false);
 
-    useEffect(() => {
-        talent.GetData().then(
-            data => {
-                setTalent(data)
-            }
-        );
-    }, []);
+    const dummy_talents = [
+        {
+            name: 'Student 1',
+            status: 'Idle',
+            batch: 'Batch 23',
+            material: 'Node JS'
+        },
+        {
+            name: 'Student 2',
+            status: 'On Training',
+            batch: 'Batch 21',
+            material: 'Golang'
+        },
+        {
+            name: 'Student 3',
+            status: 'Trial',
+            batch: 'Batch 25',
+            material: 'Node JS'
+        },
+        {
+            name: 'Student 4',
+            status: 'Trial',
+            batch: 'Batch 24',
+            material: 'Golang'
+        },
+    ]
+
+    const [active, setActive] = React.useState(1);
+ 
+    const getItemProps = (index: React.SetStateAction<number>) => ({
+        className: active === index ? "bg-gray-100 text-gray-900" : "",
+        onClick: () => setActive(index),
+    });
+    
+    const next = () => {
+        if (active === 10) return;
+    
+        setActive(active + 1);
+    };
+    
+    const prev = () => {
+        if (active === 1) return;
+    
+        setActive(active - 1);
+    };
 
     return (
       <Layout>
@@ -58,65 +112,69 @@ export default function TalentList() {
                 
                 <h1 className="p-10 pt-5 pb-1 text-md">Choose talent for placement</h1>
                 
-                <div className="flex p-10 gap-10 pt-5">
+                <div className="flex p-10 gap-10 pt-5 justify-center">
                     
-                    <div className="max-w-[23%] bg-white border border-gray-200 rounded-lg shadow">
+                {dummy_talents.map((student: any, i: number) => 
+                            
+                    <div key={i} className="max-w-[23%] bg-white border border-gray-200 rounded-lg shadow">
                         <a href="#">
-                            <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="example" />
+                            <Image className="rounded-t-lg mx-auto mt-4 brightness-125" width={180} height={180} src={profile} alt="example" />
                         </a>
                         <div className="p-5">
                             <a href="#">
-                                <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">Full Name</h5>
+                                <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">{student.name}</h5>
                             </a>
-                            <p className="text-center mb-3 text-md font-normal text-gray-700 dark:text-gray-400">Status</p>
+                            <p className="text-center mb-3 text-md font-medium text-gray-900 dark:text-gray-400">{student.status}</p>
 
                             <div className="flex">
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Material</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">{student.batch}</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">{student.material}</p>
                             </div>
                             
-                            <div className="flex mt-3">
+                            <div className="flex gap-2 mt-3">
                                 <a href="#" className="grow inline-flex justify-center px-3 py-2 text-md font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800">
                                     Join Placement
                                 </a>
-                                <a href="#" className="ms-5 m-2 hover:underline">
-                                    More
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                                <button className="dropdots inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:bg-gray-200" type="button"> 
+                                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
+                                        <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
+                                    </svg>
+                                </button>
 
-                    <div className="max-w-[23%] bg-white border border-gray-200 rounded-lg shadow">
-                        <a href="#">
-                            <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="example" />
-                        </a>
-                        <div className="p-5">
-                            <a href="#">
-                                <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">Full Name</h5>
-                            </a>
-                            <p className="text-center mb-3 text-md font-normal text-gray-700 dark:text-gray-400">Status</p>
-
-                            <div className="flex">
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Material</p>
-                            </div>
-                            
-                            <div className="flex mt-3">
-                                <a href="#" className="grow inline-flex justify-center px-3 py-2 text-md font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800">
-                                    Join Placement
-                                </a>
-                                <a href="#" className="ms-5 m-2 hover:underline">
-                                    More
-                                </a>
                             </div>
                         </div>
                     </div>
                     
+                )}
+
                 </div>
-
             </div>
         </div>
-        
+
+        <div className="flex items-center gap-8 justify-center">
+            <IconButton
+                size="sm"
+                variant="outlined"
+                onClick={prev}
+                hidden={active === 1}
+            >
+                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4 -mt-2 -ms-2" />
+            </IconButton>
+            <Typography color="gray" className="font-normal">
+                Page <strong className="text-gray-900">{active}</strong> of{" "}
+                <strong className="text-gray-900">10</strong>
+            </Typography>
+            <IconButton
+                size="sm"
+                variant="outlined"
+                onClick={next}
+                hidden={active === 10}
+                
+            >
+                <ArrowRightIcon strokeWidth={2} className="-mt-2 -ms-2 h-4 w-4" />
+            </IconButton>
+        </div>
+
         </Layout>
     );
 }

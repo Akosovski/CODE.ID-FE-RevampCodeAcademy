@@ -5,12 +5,7 @@ import {
   HomeIcon,
   MenuAlt1Icon,
   XIcon,
-  SelectorIcon,
-  ClipboardListIcon,
-  CollectionIcon,
-  CreditCardIcon,
   ViewGridAddIcon,
-  CashIcon,
   CogIcon,
   PhoneOutgoingIcon,
   UserGroupIcon,
@@ -33,38 +28,38 @@ import { useRouter } from "next/router";
 const navigation = [
   {
     name: "Dashboard",
-    href: "/app",
+    href: "/",
     icon: HomeIcon,
     current: true,
-    roles: ["Administrator", "Recuirter", "Sales", "Instructor"],
+    roles: ["Administrator", "Recruiter", "Sales", "Instructor"],
   },
   {
     name: "Candidates",
     href: "/app/candidat",
     icon: AcademicCapIcon,
     current: false,
-    roles: ["Administrator", "Recuirter", "Instructor"],
+    roles: ["Administrator", "Recruiter", "Instructor"],
   },
   {
     name: "Batch",
     href: "/app/batch",
     icon: ViewGridAddIcon,
     current: false,
-    roles: ["Administrator", "Recuirter", "Instructor"],
+    roles: ["Administrator", "Recruiter", "Instructor"],
   },
   {
     name: "Talent",
     href: "/app/talent",
     icon: UserGroupIcon,
     current: false,
-    roles: ["Administrator", "Recuirter", "Instructor", "Sales"],
+    roles: ["Administrator", "Recruiter", "Instructor", "Sales"],
   },
   {
     name: "Placement",
     href: "/app/placement",
     icon: UserGroupIcon,
     current: false,
-    roles: ["Administrator", "Recuirter", "Sales"],
+    roles: ["Administrator", "Recruiter", "Sales"],
   },
   {
     name: "Curriculum",
@@ -78,7 +73,7 @@ const navigation = [
     href: "/app/hiring",
     icon: PhoneOutgoingIcon,
     current: false,
-    roles: ["Administrator", "Recuirter", "Sales"],
+    roles: ["Administrator", "Recruiter", "Sales"],
   },
   {
     name: "Settings",
@@ -87,10 +82,10 @@ const navigation = [
     current: false,
     roles: [
       "Administrator",
-      "Recuirter",
+      "Recruiter",
       "Sales",
       "Instructor",
-      "Candidat",
+      "Candidates",
       "Talent",
       "Outsource",
     ],
@@ -166,13 +161,7 @@ export default function AppLayout(props: any) {
                   </button>
                 </div>
               </Transition.Child>
-              <div className="flex-shrink-0 flex items-center px-4">
-                <img
-                  className="h-10 w-auto"
-                  src=""
-                  alt="codeid"
-                />
-              </div>
+
               <div className="mt-5 flex-1 h-0 overflow-y-auto">
                 <nav className="px-2">
                   <div className="space-y-1">
@@ -280,138 +269,6 @@ export default function AppLayout(props: any) {
                   />
                 </div>
               </form>
-            </div>
-            <div className="flex items-center">
-              {/* Profile dropdown */}
-              <Menu as="div" className="ml-3 relative">
-                {({ open }) => (
-                  <>
-                    <div>
-                      <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                        <span className="sr-only">Open user menu</span>
-                        <img
-                          className="w-10 h-10 bg-gray-300 object-cover rounded-full flex-shrink-0"
-                          src="../assets/images/yuri.jpg"
-                          alt=""
-                        />
-                      </Menu.Button>
-                    </div>
-                    <Transition
-                      show={open}
-                      as={Fragment}
-                      enter="transition ease-out duration-100"
-                      enterFrom="transform opacity-0 scale-95"
-                      enterTo="transform opacity-100 scale-100"
-                      leave="transition ease-in duration-75"
-                      leaveFrom="transform opacity-100 scale-100"
-                      leaveTo="transform opacity-0 scale-95"
-                    >
-                      <Menu.Items
-                        static
-                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none"
-                      >
-                        <div className="py-1">
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                View profile
-                              </Link>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                Settings
-                              </Link>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                Notifications
-                              </Link>
-                            )}
-                          </Menu.Item>
-                        </div>
-                        <div className="py-1">
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                Get desktop app
-                              </Link>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                Support
-                              </Link>
-                            )}
-                          </Menu.Item>
-                        </div>
-                        <div className="py-1">
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                href="#"
-                                onClick={onLogout}
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                Logout
-                              </Link>
-                            )}
-                          </Menu.Item>
-                        </div>
-                      </Menu.Items>
-                    </Transition>
-                  </>
-                )}
-              </Menu>
             </div>
           </div>
         </div>

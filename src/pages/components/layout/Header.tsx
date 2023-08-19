@@ -25,7 +25,7 @@ import {
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { useSelector, useDispatch } from 'react-redux';
-import { doPushSignoutRequest } from '@/redux-saga/action/UserAction';
+import { doPushSignoutRequest } from '@/redux-saga/action/userAction';
 import CODEID from '@/pages/images/codeid.png';
 
 const solutions = [

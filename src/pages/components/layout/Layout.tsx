@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import LandingPage from "./LandingPage";
 import AppLayout from "./AppLayout";
 import Header from "./Header";

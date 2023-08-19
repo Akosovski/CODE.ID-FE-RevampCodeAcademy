@@ -1,6 +1,6 @@
 import { put, call } from "redux-saga/effects";
 import user from "@/pages/api/user";
-import { GetUserFail, GetUserSuccess } from "../action/UserAction";
+import { GetUserFail, GetUserSuccess } from "../action/userAction";
 
 function* handleGetUser(action: any): any {
   try {

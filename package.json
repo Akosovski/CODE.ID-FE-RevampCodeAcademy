@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^1.0.0",
+    "@material-tailwind/react": "^2.1.0",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
@@ -21,6 +22,7 @@
     "dependencies": "^0.0.1",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
+    "flowbite": "^1.8.1",
     "formik": "^2.4.2",
     "next": "^13.4.16",
     "postcss": "8.4.26",
@@ -35,5 +37,10 @@
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6",
     "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/core-js": "^2.5.5",
+    "@types/react-datepicker": "^4.15.0",
+    "@types/redux-logger": "^3.0.9"
   }
 }
