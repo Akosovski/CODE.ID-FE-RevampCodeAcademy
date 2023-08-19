@@ -43,7 +43,7 @@ export default function TalentList() {
 
                         <div className="ms-5 pt-1">
                             <select id="countries" className="h-12 bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-within:shadow-lg cursor-pointer">
-                                <option selected>Status</option>
+                                <option selected>STATUS</option>
                                 <option value="TRAIN">ON TRAINING</option>
                                 <option value="IDLE">IDLE</option>
                                 <option value="TRIAL">TRIAL</option>
@@ -59,15 +59,16 @@ export default function TalentList() {
                 <h1 className="p-10 pt-5 pb-1 text-md">Choose talent for placement</h1>
                 
                 <div className="flex p-10 gap-10 pt-5">
-                    <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow">
+                    
+                    <div className="max-w-[23%] bg-white border border-gray-200 rounded-lg shadow">
                         <a href="#">
                             <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="example" />
                         </a>
                         <div className="p-5">
                             <a href="#">
-                                <h5 className="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900">Full Name</h5>
+                                <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">Full Name</h5>
                             </a>
-                            <p className="text-center mb-3 text-lg font-normal text-gray-700 dark:text-gray-400">Status</p>
+                            <p className="text-center mb-3 text-md font-normal text-gray-700 dark:text-gray-400">Status</p>
 
                             <div className="flex">
                                 <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
@@ -85,15 +86,15 @@ export default function TalentList() {
                         </div>
                     </div>
 
-                    <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow">
+                    <div className="max-w-[23%] bg-white border border-gray-200 rounded-lg shadow">
                         <a href="#">
                             <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="example" />
                         </a>
                         <div className="p-5">
                             <a href="#">
-                                <h5 className="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900">Full Name</h5>
+                                <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">Full Name</h5>
                             </a>
-                            <p className="text-center mb-3 text-lg font-normal text-gray-700 dark:text-gray-400">Status</p>
+                            <p className="text-center mb-3 text-md font-normal text-gray-700 dark:text-gray-400">Status</p>
 
                             <div className="flex">
                                 <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
@@ -110,6 +111,7 @@ export default function TalentList() {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
             </div>
