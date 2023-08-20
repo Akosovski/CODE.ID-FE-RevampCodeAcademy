@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Talent from '../api/talent';
 import Layout from '../components/layout/Layout';
@@ -10,6 +10,7 @@ import Image from 'next/image';
 import profile from '@/pages/images/dummy_profile.png';
 import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
+import { Menu, Transition } from '@headlessui/react';
 
 export default function TalentList(props: any) {
     const [talentValue, setTalentValue] = useState([]);
@@ -111,29 +112,68 @@ export default function TalentList(props: any) {
                             <a href="#">
                                 <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">{talent.empEntity.userFirstName}&nbsp;{talent.empEntity.userLastName}</h5>
                             </a>
-                            <p className="text-center mb-3 text-md font-medium text-gray-900 dark:text-gray-400">Status</p>
+                            <p className="text-center mb-3 text-md font-medium text-gray-900 dark:text-gray-400">{talent.employeeClientContracts.eccoStatus}Status</p>
 
                             <div className="flex">
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Material</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">{talent.batches.batch_name}Batch</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">{talent.programEntities.progTitle}Title</p>
                             </div>
                             
                             <div className="flex gap-2 mt-3">
                                 <a href="#" className="grow inline-flex justify-center px-3 py-2 text-md font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800">
                                     Join Placement
                                 </a>
-                                <button className="dropdots inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:bg-gray-200" type="button"> 
-                                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
-                                        <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
-                                    </svg>
-                                </button>
 
+                                <Menu as="div">
+                                    <Menu.Button className="dropdots inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:bg-gray-200" type="button"> 
+                                        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
+                                            <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
+                                        </svg>
+                                    </Menu.Button>
+                                
+                                <Transition
+                                    as={Fragment}
+                                    enter="transition ease-out duration-100"
+                                    enterFrom="transform opacity-0 scale-95"
+                                    enterTo="transform opacity-100 scale-100"
+                                    leave="transition ease-in duration-75"
+                                    leaveFrom="transform opacity-100 scale-100"
+                                    leaveTo="transform opacity-0 scale-95"
+                                >
+                                    <Menu.Items className="absolute mt-4 -ms-48 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div className="px-1 py-1">
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <button
+                                                        className={`${
+                                                        active ? 'bg-gray-500 text-white' : 'text-gray-900'
+                                                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                                    >
+                                                        Switch Action
+                                                    </button>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <button
+                                                        className={`${
+                                                        active ? 'bg-gray-500 text-white' : 'text-gray-900'
+                                                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                                    >
+                                                        Details
+                                                    </button>
+                                                )}
+                                            </Menu.Item>
+                                        </div>
+                                    </Menu.Items>  
+
+                                </Transition>
+                            </Menu>
+                            
                             </div>
                         </div>
                     </div>
                 )}
-
-                
 
                 </div>
             </div>
