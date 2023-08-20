@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import GetTalent from '../api/talent';
 import Layout from '../components/layout/Layout';
 import { GetTalentReq } from "@/redux-saga/action/talentAction";
-import prodile from '@/pages/images/dummy_profile.png';
 import Image from 'next/image';
 import profile from '@/pages/images/dummy_profile.png';
 import { IconButton, Typography } from "@material-tailwind/react";
@@ -83,7 +82,7 @@ export default function TalentList(props: any) {
     const itemsPerPage = 4; 
     const totalPages = Math.ceil(dummy_talents.length / itemsPerPage);
 
-    const getPageData = () => {
+    const getCurrentPageData = () => {
         const startIndex = (active - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         return dummy_talents.slice(startIndex, endIndex);
@@ -101,14 +100,30 @@ export default function TalentList(props: any) {
         }
     };
 
+    const getFilteredData = () => {
+        const searchText = searchValue.toLowerCase();
+        return dummy_talents.filter((student: any) => {
+            return (
+                student.name.toLowerCase().includes(searchText) ||
+                student.batch.toLowerCase().includes(searchText) ||
+                student.material.toLowerCase().includes(searchText)
+            );
+        });
+    };
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        setSearchDisplay(true);
+    };
+
     return (
       <Layout>
         <div className="grid grid-flow-col">
             <div className="col-span-8">
                 
-                <form className="border-b-2 border-gray-300 pb-2"> 
+                <form className="border-b-2 border-gray-300 pb-2" onSubmit={handleSearch}> 
                     <div className="flex h-20 p-4 justify-center me-20">
-                        <div className="p-4 text-sm sm:text-md">
+                        <div className="p-4 text-md">
                             <p>Search by category</p>
                         </div>
 
@@ -124,7 +139,10 @@ export default function TalentList(props: any) {
                                 className="peer h-full w-full outline-none text-sm text-gray-700 pr-2 bg-gray-50"
                                 type="text"
                                 id="search"
-                                placeholder="talent name, technology..." /> 
+                                placeholder="talent name, technology..." 
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                                /> 
                             </div>
                         </div>
 
@@ -138,18 +156,18 @@ export default function TalentList(props: any) {
                         </div>
 
                         <div className="ms-5 pt-1.5">
-                            <button type="submit" className="p-4 text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Search</button>
+                            <button type="submit"
+                            className="p-4 text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Search</button>
                         </div>
                     </div>
                 </form>
                 
                 <h1 className="p-10 pt-5 pb-1 text-md">Choose talent for placement</h1>
                 
-                <div className="flex p-10 gap-8 md:gap-8 lg:gap-10 pt-5 justify-center">
+                <div className="flex p-10 gap-8 md:gap-10 lg:gap-15 pt-5 justify-center">
                     
-                {getPageData().map((student: any, i: number) => (
-                            
-                    <div key={i} className="max-w-[23%] lg:w-[25%] bg-white border border-gray-200 rounded-lg shadow">
+                {getCurrentPageData().map((student: any, i: number) =>
+                    <div key={i} className="min-w-[23%] lg:w-[25%] bg-white border border-gray-200 rounded-lg shadow">
                         <a href="#">
                             <Image className="rounded-t-lg mx-auto mt-4 brightness-125" width={180} height={180} src={profile} alt="example" />
                         </a>
@@ -177,8 +195,9 @@ export default function TalentList(props: any) {
                             </div>
                         </div>
                     </div>
-                    ))
-                }
+                )}
+
+                
 
                 </div>
             </div>
