@@ -10,7 +10,7 @@ import Image from 'next/image';
 import profile from '@/pages/images/dummy_profile.png';
 import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 
 export default function TalentList(props: any) {
@@ -53,6 +53,17 @@ export default function TalentList(props: any) {
             setActive(active - 1);
         }
     };
+
+    // Status Modal
+    let [isOpen, setIsOpen] = useState(false)
+
+    function closeModal() {
+        setIsOpen(false)
+    }
+
+    function openModal() {
+        setIsOpen(true)
+    }
 
     return (
       <Layout>
@@ -154,6 +165,7 @@ export default function TalentList(props: any) {
                                                     </button>
                                                 )}
                                             </Menu.Item>
+
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <Link href={`/details/${talent.empEntityId}`}>
@@ -176,6 +188,8 @@ export default function TalentList(props: any) {
                             </div>
                         </div>
                     </div>
+
+                    
                 )}
 
                 </div>
