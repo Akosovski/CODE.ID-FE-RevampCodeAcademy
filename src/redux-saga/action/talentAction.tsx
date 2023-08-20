@@ -1,16 +1,21 @@
-import * as ActionRegion from '../constant/talentConstant'
+import * as ActionTalent from '../constant/talentConstant'
 
 export const GetTalentReq = (payload : any) =>({
-    type:ActionRegion.GET_DATA_REQ,
+    type:ActionTalent.GET_DATA_REQ,
+    payload
+})
+
+export const GetOneTalentReq = (payload : any) => ({
+    type:ActionTalent.GET_DATA_REQ,
     payload
 })
 
 export const GetTalentSuccess = (payload : any) => ({
-    type: ActionRegion.GET_DATA_OK,
+    type: ActionTalent.GET_DATA_OK,
     payload
 })
 
 export const GetTalentFail = (payload: any) => ({
-    type: ActionRegion.GET_DATA_FAIL,
+    type: ActionTalent.GET_DATA_FAIL,
     payload
 })
