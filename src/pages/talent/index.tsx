@@ -47,6 +47,30 @@ export default function TalentList(props: any) {
             batch: 'Batch 24',
             material: 'Golang'
         },
+        {
+            name: 'Student 5',
+            status: 'Trial',
+            batch: 'Batch 24',
+            material: 'Node JS'
+        },
+        {
+            name: 'Student 6',
+            status: 'Trial',
+            batch: 'Batch 24',
+            material: 'Golang'
+        },
+        {
+            name: 'Student 7',
+            status: 'Trial',
+            batch: 'Batch 24',
+            material: 'Node JS'
+        },
+        {
+            name: 'Student 8',
+            status: 'Trial',
+            batch: 'Batch 24',
+            material: 'Golang'
+        },
     ]
 
     const [active, setActive] = React.useState(1);
@@ -55,17 +79,26 @@ export default function TalentList(props: any) {
         className: active === index ? "bg-gray-100 text-gray-900" : "",
         onClick: () => setActive(index),
     });
-    
-    const next = () => {
-        if (active === 10) return;
-    
-        setActive(active + 1);
+
+    const itemsPerPage = 4; 
+    const totalPages = Math.ceil(dummy_talents.length / itemsPerPage);
+
+    const getPageData = () => {
+        const startIndex = (active - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return dummy_talents.slice(startIndex, endIndex);
     };
     
+    const next = () => {
+        if (active < totalPages) {
+            setActive(active + 1);
+        }
+    };
+
     const prev = () => {
-        if (active === 1) return;
-    
-        setActive(active - 1);
+        if (active > 1) {
+            setActive(active - 1);
+        }
     };
 
     return (
@@ -112,11 +145,11 @@ export default function TalentList(props: any) {
                 
                 <h1 className="p-10 pt-5 pb-1 text-md">Choose talent for placement</h1>
                 
-                <div className="flex p-10 gap-10 pt-5 justify-center">
+                <div className="flex p-10 gap-8 md:gap-8 lg:gap-10 pt-5 justify-center">
                     
-                {dummy_talents.map((student: any, i: number) => 
+                {getPageData().map((student: any, i: number) => (
                             
-                    <div key={i} className="max-w-[23%] bg-white border border-gray-200 rounded-lg shadow">
+                    <div key={i} className="max-w-[23%] lg:w-[25%] bg-white border border-gray-200 rounded-lg shadow">
                         <a href="#">
                             <Image className="rounded-t-lg mx-auto mt-4 brightness-125" width={180} height={180} src={profile} alt="example" />
                         </a>
@@ -144,35 +177,34 @@ export default function TalentList(props: any) {
                             </div>
                         </div>
                     </div>
-                    
-                )}
+                    ))
+                }
 
                 </div>
             </div>
         </div>
 
         <div className="flex items-center gap-8 justify-center">
-            <IconButton
-                size="sm"
-                variant="outlined"
-                onClick={prev}
-                hidden={active === 1}
-            >
-                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4 -mt-2 -ms-2" />
-            </IconButton>
-            <Typography color="gray" className="font-normal">
-                Page <strong className="text-gray-900">{active}</strong> of{" "}
-                <strong className="text-gray-900">10</strong>
-            </Typography>
-            <IconButton
-                size="sm"
-                variant="outlined"
-                onClick={next}
-                hidden={active === 10}
-                
-            >
-                <ArrowRightIcon strokeWidth={2} className="-mt-2 -ms-2 h-4 w-4" />
-            </IconButton>
+                <IconButton
+                    size="sm"
+                    variant="outlined"
+                    onClick={prev}
+                    hidden={active === 1}
+                >
+                    <ArrowLeftIcon strokeWidth={2} className="h-4 w-4 -mt-2 -ms-2" />
+                </IconButton>
+                <Typography color="gray" className="font-normal">
+                    Page <strong className="text-gray-900">{active}</strong> of{" "}
+                    <strong className="text-gray-900">{totalPages}</strong>
+                </Typography>
+                <IconButton
+                    size="sm"
+                    variant="outlined"
+                    onClick={next}
+                    hidden={active === totalPages}
+                >
+                    <ArrowRightIcon strokeWidth={2} className="-mt-2 -ms-2 h-4 w-4" />
+                </IconButton>
         </div>
 
         </Layout>
