@@ -11,16 +11,17 @@ import profile from '@/pages/images/dummy_profile.png';
 import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
 import { Menu, Transition } from '@headlessui/react';
+import Link from 'next/link';
 
 export default function TalentList(props: any) {
     const [talentValue, setTalentValue] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [page, setPage] = useState([]);
     const [searchDisplay, setSearchDisplay] = useState(false);
-
-    const dispatch = useDispatch();
     const [refresh, setRefresh] = useState(true);
+    const dispatch = useDispatch();
 
+    // Fetch Talents
     const { talents } = useSelector((state: any) => state.talentState);
     console.log("Talents : ", talents);
 
@@ -140,7 +141,7 @@ export default function TalentList(props: any) {
                                     leaveFrom="transform opacity-100 scale-100"
                                     leaveTo="transform opacity-0 scale-95"
                                 >
-                                    <Menu.Items className="absolute mt-4 -ms-48 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                    <Menu.Items className="z-50 absolute mt-4 -ms-48 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <div className="px-1 py-1">
                                             <Menu.Item>
                                                 {({ active }) => (
@@ -155,13 +156,15 @@ export default function TalentList(props: any) {
                                             </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <button
-                                                        className={`${
-                                                        active ? 'bg-gray-500 text-white' : 'text-gray-900'
-                                                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                                                    >
-                                                        Details
-                                                    </button>
+                                                    <Link href={`/details/${talent.empEntityId}`}>
+                                                        <button
+                                                            className={`${
+                                                            active ? 'bg-gray-500 text-white' : 'text-gray-900'
+                                                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                                        >
+                                                            Details
+                                                        </button>
+                                                    </Link>
                                                 )}
                                             </Menu.Item>
                                         </div>
