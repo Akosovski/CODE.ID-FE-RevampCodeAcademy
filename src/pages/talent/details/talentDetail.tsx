@@ -12,15 +12,15 @@ export default function TalentDetail(props: any) {
   console.log("Talent: ", talent);
 
   useEffect(() => {
-    const empEntityId = 1
-    dispatch(GetOneTalentReq({ id: empEntityId }));
-  }, [dispatch]);
+    dispatch(GetOneTalentReq({ id: props.empEntityId }));
+  }, [dispatch, props.empEntityId]);
 
   return (
     <Layout>
       {talent && (
         <div>
           <h1>Talent Details No. {talent.empEntityId}</h1>
+          <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">{talent.empEntity.userFirstName}&nbsp;{talent.empEntity.userLastName}</h5>
         </div>
       )}
     </Layout>

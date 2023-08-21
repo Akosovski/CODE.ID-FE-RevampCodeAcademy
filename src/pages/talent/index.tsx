@@ -150,7 +150,7 @@ export default function TalentList(props: any) {
 
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <Link href={`/talent/details/${talent.empEntityId}`}>
+                                                    <Link href={`/talent/details/${talent.empEntityId}?data=${encodeURIComponent(talent.empEntityId)}`}>
                                                             <button
                                                                 className={`${active ? 'bg-gray-500 text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                                             >

@@ -3,11 +3,13 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useRouter } from 'next/router';
-import TalentDetail from './talentDetail'; // Import your TalentDetail component
+import TalentDetail from './talentDetail';
 
 export default function TalentDetailPage() {
   const router = useRouter();
-  const empEntityId = router.query.empEntityId as string; // Type assertion
+  const empEntityId = router.query.data;
+
+  console.log("empEntityId: ", empEntityId);
 
   return <TalentDetail empEntityId={empEntityId} />;
 }
