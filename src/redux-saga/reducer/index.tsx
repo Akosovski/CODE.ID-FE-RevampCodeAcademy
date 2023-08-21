@@ -6,7 +6,7 @@ import EmployeeReducer from './employeeReducer'
 const rootReducer = combineReducers({
     talentState : TalentReducer,
     talentDetailState :TalentDetailReducer,
-    employeeState :EmployeeReducer
+    employeeState :EmployeeReducer,
 })
 
 export default rootReducer
