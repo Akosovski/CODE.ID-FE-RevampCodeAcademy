@@ -8,10 +8,10 @@ const TalentReducer = (state = INIT_STATE, action: any) => {
   switch (action.type) {
     case ActionType.GET_DATA_REQ:
       return { ...state };
-    case ActionType.GET_DATA_OK:
+    case ActionType.GET_DATA_SUCCESS:
       return GetTalent(state, action);
-    case ActionType.ADD_DATA_REQUEST:
-      return { ...state };
+    //case ActionType.ADD_DATA_REQUEST:
+      //return { ...state };
     default:
       return { ...state };
   }

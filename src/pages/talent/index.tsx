@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import Talent from '../api/talent';
 import Layout from '../components/layout/Layout';
 import { GetTalentReq, GetOneTalentReq, SearchTalentReq } from "@/redux-saga/action/talentAction";
 import Image from 'next/image';
@@ -14,27 +13,21 @@ import { Menu, Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 
 export default function TalentList(props: any) {
-    const [talentValue, setTalentValue] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    const [searchDisplay, setSearchDisplay] = useState(false);
-    const [refresh, setRefresh] = useState(true);
     const dispatch = useDispatch();
 
     // Fetch Talents
     const { talents } = useSelector((state: any) => state.talentState);
     console.log("Talents : ", talents);
 
-    const empEntityId = 1;
-
     useEffect(() => {
-        dispatch(SearchTalentReq({}));
-        dispatch(GetTalentReq(empEntityId));
-    }, [dispatch, empEntityId]);
+        dispatch(GetTalentReq(1));
+    }, [dispatch]);
 
     const [active, setActive] = React.useState(1);
 
     let totalPages: number = Math.ceil(talents?.totalCount / talents?.limit);
-    console.log("totalPages : ", Math.floor(8 / 4));
+    console.log("totalPages : ", totalPages);
     
     const getCurrentPageData = () => {
         const startIndex = (active - 1) * (talents?.limit || 0);
@@ -53,17 +46,6 @@ export default function TalentList(props: any) {
             setActive(active - 1);
         }
     };
-
-    // Status Modal
-    let [isOpen, setIsOpen] = useState(false)
-
-    function closeModal() {
-        setIsOpen(false)
-    }
-
-    function openModal() {
-        setIsOpen(true)
-    }
 
     return (
       <Layout>
@@ -169,13 +151,11 @@ export default function TalentList(props: any) {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <Link href={`/talent/details/${talent.empEntityId}`}>
-                                                        <button
-                                                            className={`${
-                                                            active ? 'bg-gray-500 text-white' : 'text-gray-900'
-                                                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                                                        >
-                                                            Details
-                                                        </button>
+                                                            <button
+                                                                className={`${active ? 'bg-gray-500 text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                                            >
+                                                                Details
+                                                            </button>
                                                     </Link>
                                                 )}
                                             </Menu.Item>

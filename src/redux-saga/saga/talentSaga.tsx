@@ -1,6 +1,11 @@
-import {call,put} from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 import talent from '@/pages/api/talent'
-import { GetTalentFail, GetTalentSuccess } from '../action/talentAction'
+import { 
+    GetTalentFail, 
+    GetTalentSuccess, 
+    GetOneTalentFail, 
+    GetOneTalentSuccess 
+} from '../action/talentAction'
 
 function* handleGetTalent(action: any): any {
     const { payload } = action;
@@ -15,10 +20,10 @@ function* handleGetTalent(action: any): any {
 function* handleGetOneTalent(action: any): any {
     const { payload } = action;
     try {
-        const result = yield call(talent.findOneTalent, payload)
-        yield put(GetTalentSuccess(result.data))
+        const result = yield call(talent.GetOneTalent, payload)
+        yield put(GetOneTalentSuccess(result.data))
     } catch (error) {
-        yield put(GetTalentFail(error))
+        yield put(GetOneTalentFail(error))
     }
 }
 

@@ -1,23 +1,34 @@
 import * as ActionTalent from '../constant/talentConstant'
 
-// Get
+// Get One Talent
+export const GetOneTalentReq = (payload : any) => ({
+    type:ActionTalent.GET_ONE_DATA_REQ,
+    payload
+})
+
+export const GetOneTalentSuccess = (payload : any) => ({
+    type:ActionTalent.GET_ONE_DATA_SUCCESS,
+    payload
+})
+
+export const GetOneTalentFail = (payload: any) => ({
+    type: ActionTalent.GET_ONE_DATA_FAILED,
+    payload
+})
+
+// Get All Talents
 export const GetTalentReq = (payload : any) =>({
     type:ActionTalent.GET_DATA_REQ,
     payload
 })
 
-export const GetOneTalentReq = (payload : any) => ({
-    type:ActionTalent.GET_DATA_REQ,
-    payload
-})
-
 export const GetTalentSuccess = (payload : any) => ({
-    type: ActionTalent.GET_DATA_OK,
+    type: ActionTalent.GET_DATA_SUCCESS,
     payload
 })
 
 export const GetTalentFail = (payload: any) => ({
-    type: ActionTalent.GET_DATA_FAIL,
+    type: ActionTalent.GET_DATA_FAILED,
     payload
 })
 

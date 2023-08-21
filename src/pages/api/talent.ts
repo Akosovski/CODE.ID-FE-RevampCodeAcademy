@@ -2,15 +2,6 @@
 import axios from "axios";
 import config from "@/config/config";
 
-export const GetData = async () => {
-  try {
-    const result = await axios.get(`${config.domain}/talent`);
-    return result.data;
-  } catch (error) {
-    return error;
-  }
-};
-
 const GetTalent = async (payload: any) => {
   try {
       const { pages = 1, limit = 4} = payload;
@@ -22,18 +13,18 @@ const GetTalent = async (payload: any) => {
   }
 };
 
-const findOneTalent = async (payload: any) => {
+const GetOneTalent = async (payload: any) => {
   try {
-      const result = await axios.get(`${config.domain}/talent/details/${payload}`);
+      const { id = 1} = payload;
+      const result = await axios.get(`${config.domain}/talent/details/${id}`);
+      
       return result;
   } catch (error) {
       return error;
   }
 };
 
-
 export default {
-  GetData,
   GetTalent,
-  findOneTalent,
+  GetOneTalent,
 };
