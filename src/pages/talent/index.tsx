@@ -5,7 +5,7 @@ import React, { useEffect, useState, Fragment, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Talent from '../api/talent';
 import Layout from '../components/layout/Layout';
-import { GetTalentReq, GetOneTalentReq } from "@/redux-saga/action/talentAction";
+import { GetTalentReq, GetOneTalentReq, SearchTalentReq } from "@/redux-saga/action/talentAction";
 import Image from 'next/image';
 import profile from '@/pages/images/dummy_profile.png';
 import { IconButton, Typography } from "@material-tailwind/react";
@@ -16,7 +16,6 @@ import Link from 'next/link';
 export default function TalentList(props: any) {
     const [talentValue, setTalentValue] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    const [page, setPage] = useState([]);
     const [searchDisplay, setSearchDisplay] = useState(false);
     const [refresh, setRefresh] = useState(true);
     const dispatch = useDispatch();
@@ -28,19 +27,20 @@ export default function TalentList(props: any) {
     const empEntityId = 1;
 
     useEffect(() => {
+        dispatch(SearchTalentReq({}));
         dispatch(GetTalentReq(empEntityId));
     }, [dispatch, empEntityId]);
 
     const [active, setActive] = React.useState(1);
 
     let totalPages: number = Math.ceil(talents?.totalCount / talents?.limit);
-    console.log("totalPages : ", totalPages);
+    console.log("totalPages : ", Math.floor(8 / 4));
     
     const getCurrentPageData = () => {
-        const startIndex = (active - 1) * talents?.limit;
-        const endIndex = startIndex + talents?.limit;
-        return talents?.items.slice(startIndex, endIndex);
-    };
+        const startIndex = (active - 1) * (talents?.limit || 0);
+        const endIndex = startIndex + (talents?.limit || 0);
+        return talents?.data?.slice(startIndex, endIndex) || [];
+      };
 
     const next = () => {
         if (active < totalPages) {
@@ -115,7 +115,7 @@ export default function TalentList(props: any) {
                 
                 <div className="flex p-10 gap-8 md:gap-10 lg:gap-15 pt-5 justify-center">
                     
-                {talents.data && talents.data.map((talent: any) =>
+                {getCurrentPageData().map((talent: any) =>
                     <div key={talent.empEntityId} className="min-w-[23%] lg:w-[25%] bg-white border border-gray-200 rounded-lg shadow">
                         <a href="#">
                             <Image className="rounded-t-lg mx-auto mt-4 brightness-125" width={180} height={180} src={profile} alt="example" />
@@ -168,7 +168,7 @@ export default function TalentList(props: any) {
 
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <Link href={`/details/${talent.empEntityId}`}>
+                                                    <Link href={`/talent/details/${talent.empEntityId}`}>
                                                         <button
                                                             className={`${
                                                             active ? 'bg-gray-500 text-white' : 'text-gray-900'
@@ -213,7 +213,7 @@ export default function TalentList(props: any) {
                     size="sm"
                     variant="outlined"
                     onClick={next}
-                    hidden={active === totalPages}
+                    hidden={active === totalPages || totalPages === 1}
                 >
                     <ArrowRightIcon strokeWidth={2} className="-mt-2 -ms-2 h-4 w-4" />
                 </IconButton>
