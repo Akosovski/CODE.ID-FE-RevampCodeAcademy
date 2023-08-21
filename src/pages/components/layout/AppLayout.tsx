@@ -55,8 +55,8 @@ const navigation = [
     roles: ["Administrator", "Recruiter", "Instructor", "Sales"],
   },
   {
-    name: "Placement",
-    href: "/placement",
+    name: "Employee",
+    href: "/employee",
     icon: UserGroupIcon,
     current: false,
     roles: ["Administrator", "Recruiter", "Sales"],
@@ -112,7 +112,7 @@ export default function AppLayout(props: any) {
   };
 
   return (
-    <div className="h-screen flex overflow-hidden bg-white">
+    <div className="h-full flex overflow-hidden bg-white">
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
           as="div"

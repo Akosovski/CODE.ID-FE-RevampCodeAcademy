@@ -8,11 +8,11 @@ export default function Layout(props:any) {
     return (
         <div>
             <Header/>
-            <div className="flex flex-row mx-auto w-screen">
+            <div className="flex flex-row mx-auto w-screen overflow-scroll">
                 <div className="sm:px-0">
                     <AppLayout/>
                 </div>
-                <div className="grow sm:px-0">
+                <div className="grow sm:px-0 md:h-full lg:h-screen">
                     {children}
                 </div>
             </div>

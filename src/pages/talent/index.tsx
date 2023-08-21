@@ -140,7 +140,7 @@ export default function TalentList(props: any) {
                                                 {({ active }) => (
                                                     <button
                                                         className={`${
-                                                        active ? 'bg-gray-500 text-white' : 'text-gray-900'
+                                                        active ? 'bg-gray-600 text-white' : 'text-gray-900'
                                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                                     >
                                                         Switch Action
@@ -152,7 +152,7 @@ export default function TalentList(props: any) {
                                                 {({ active }) => (
                                                     <Link href={`/talent/details/${talent.empEntityId}?data=${encodeURIComponent(talent.empEntityId)}`}>
                                                             <button
-                                                                className={`${active ? 'bg-gray-500 text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                                                className={`${active ? 'bg-gray-600 text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                                             >
                                                                 Details
                                                             </button>
@@ -176,7 +176,7 @@ export default function TalentList(props: any) {
             </div>
         </div>
 
-        <div className="flex items-center gap-8 justify-center">
+        <div className="flex items-center gap-8 justify-center mb-10">
                 <IconButton
                     size="sm"
                     variant="outlined"

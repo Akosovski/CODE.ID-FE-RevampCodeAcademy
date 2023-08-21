@@ -22,8 +22,20 @@ export default function TalentDetail(props: any) {
 
           {talent && talent.empEntity && (
           <div>
-            <div className="border-b-2 border-gray-300">
-              <h1 className="p-5 ps-10">Talent Profile ID-{talent.empEntityId}</h1>
+            <div className="flex flex-cols border-b-2 border-gray-300">
+
+              <div className="justify-items-start flex-1">
+                <h1 className="p-5 ps-10">Talent Profile ID-{talent.empEntityId}</h1>
+              </div>
+
+              <div className="justify-items-end p-2 mt-1 me-20">
+                
+                <button className="text-white bg-gray-600 hover:bg-gray-700 
+                focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium 
+                rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Join to Placement</button>
+
+              </div>
+              
             </div>
             
             <div className="flex flex-row border-b-2 border-gray-300 h-36">
@@ -37,10 +49,10 @@ export default function TalentDetail(props: any) {
                   {talent.empEntity.userFirstName}&nbsp;{talent.empEntity.userLastName}
                 </h5>
                 <h6 className="mb-3">NodeJS, Batch#15</h6>
-                <h6 className="mb-3">StartDate until EndDate</h6>
+                <h6 className="mb-3">dd-mm-yyyy until dd-mm-yyyy</h6>
               </div>
 
-              <div className="justify-items-end bg-gray-200">
+              <div className="justify-items-end bg-gray-200 overflow-clip">
                 <h5 className="m-10 mb-2 mt-9 text-[110%]">Scale Skill (1-4)</h5>
                 
                 <div className="ms-12 text-[140%]">
@@ -65,17 +77,17 @@ export default function TalentDetail(props: any) {
 
                 <div className="basis-1/2 p-5 pb-2">
                   <h2 className="font-bold">Application for</h2>
-                  <p>app</p>
+                  <p>Junior Backend Developer</p>
                 </div>
                 
                 <div className="basis-1/2 p-5 pb-2">
                   <h2 className="font-bold">Email Address</h2>
-                  <p>email</p>
+                  <p>bingo@rocketmail.com</p>
                 </div>
 
                 <div className="basis-1/2 p-5 pb-2">
                   <h2 className="font-bold">Status</h2>
-                  <p>stat</p>
+                  <p>Idle</p>
                 </div>
 
               </div>
@@ -84,17 +96,17 @@ export default function TalentDetail(props: any) {
 
                 <div className="basis-1/2 p-5">
                   <h2 className="font-bold">Phone</h2>
-                  <p>02392932932</p>
+                  <p>+621221234393</p>
                 </div>
                 
                 <div className="basis-1/2 p-5">
                   <h2 className="font-bold">Skills</h2>
-                  <p>php, pyton, js, ts</p>
+                  <p>Javascript Full Stack, NodeJS, PHP, ReactJS, Redux</p>
                 </div>
 
                 <div className="basis-1/2 p-5">
                   <h2 className="font-bold">Placement</h2>
-                  <p>PT. Merdeka</p>
+                  <p>PT. Hari Merdeka Kita</p>
                 </div>
 
               </div>
@@ -112,6 +124,20 @@ export default function TalentDetail(props: any) {
                   </p>
                 </div>
 
+              </div>
+
+              <div className="ms-9 me-9 mt-1 mb-5">
+                <h1 className='font-bold mb-5'>Attachments</h1>
+                <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
+                    <li className="w-full p-3 border-b border-gray-300 rounded-t-lg bg-gray-200 text-[115%]">Attachment #1</li>
+                    <li className="w-full p-3 border-b border-gray-200 rounded-b-lg bg-gray-200 text-[115%]">Attachment #2</li>
+                </ul>
+              </div>
+
+              <div className="flex flex-row ms-9 me-9 mt-1 mb-12 justify-end pe-16">
+                <button className="text-white bg-gray-600 hover:bg-gray-700 
+                  focus:outline-none focus:ring-4 focus:ring-gray-300
+                  rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Return</button>
               </div>
 
             </div>
