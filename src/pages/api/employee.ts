@@ -4,9 +4,10 @@ import config from "@/config/config";
 
 const GetEmployee = async (payload: any) => {
     try {
-        const { pageno = 1, pagesize = 4} = payload;
-        const result = await axios.get(`${config.domain}/employees/paging?pageno=${pageno}&pagesize=${pagesize}`);
-        return result.data;
+        const { pages = 1 } = payload;
+        const result = await axios.get(`${config.domain}/employee/paging?page=${pages}`);
+
+        return result;
     } catch (error) {
         return error;
     }

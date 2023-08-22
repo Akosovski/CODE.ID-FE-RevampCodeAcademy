@@ -16,5 +16,5 @@ function* handleGetEmployee(action: any): any {
 }
 
 export {
-    handleGetEmployee,
+    handleGetEmployee
 }

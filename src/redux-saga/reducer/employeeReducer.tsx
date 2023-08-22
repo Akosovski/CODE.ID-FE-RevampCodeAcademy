@@ -6,11 +6,11 @@ const INIT_STATE = {
 
 const EmployeeReducer = (state = INIT_STATE, action: any) => {
   switch (action.type) {
-    case ActionType.GET_DATA_REQ:
+    case ActionType.GET_EMPLOYEE_REQ:
       return { ...state };
-    case ActionType.GET_DATA_SUCCESS:
+    case ActionType.GET_EMPLOYEE_SUCCESS:
       return GetEmployee(state, action);
-    //case ActionType.ADD_DATA_REQUEST:
+    //case ActionType.ADD_EMPLOYEE_REQUEST:
       //return { ...state };
     default:
       return { ...state };

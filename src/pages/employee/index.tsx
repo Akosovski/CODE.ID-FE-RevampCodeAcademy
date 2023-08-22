@@ -5,7 +5,6 @@ import { GetEmployeeReq } from "@/redux-saga/action/employeeAction";
 import Link from 'next/link';
 import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
-import employee from '../api/employee';
 
 export default function Employee(props: any) {
     const [searchValue, setSearchValue] = useState('');
@@ -13,7 +12,7 @@ export default function Employee(props: any) {
 
     // Fetch Employee
     const { employees } = useSelector((state: any) => state.employeeState);
-    console.log("Employee : ", employees);
+    console.log("Employees : ", employees);
 
     useEffect(() => {
         dispatch(GetEmployeeReq(1));
@@ -21,14 +20,14 @@ export default function Employee(props: any) {
 
     const [active, setActive] = React.useState(1);
 
-    let totalPages: number = Math.ceil(employees?.totalCount / employees?.limit);
-    console.log("totalPages : ", totalPages);
+    let totalPages: number = Math.ceil(employees?.totalCount / 10); // Max Shown Employee 10 Rows
+    console.log("totalPages : ", employees?.totalCount );
     
     const getCurrentPageData = () => {
-        const startIndex = (active - 1) * (employees?.limit || 0);
-        const endIndex = startIndex + (employees?.limit || 0);
+        const startIndex = (active - 1) * (10 || 0);
+        const endIndex = startIndex + (10 || 0);
         return employees?.data?.slice(startIndex, endIndex) || [];
-      };
+    };
 
     const next = () => {
         if (active < totalPages) {
@@ -70,9 +69,9 @@ export default function Employee(props: any) {
                                 </div>
                             </div>
 
-                            <div className="ms-5 pt-1">
+                            <div className="ms-5 pt-1.5">
                                 <select id="search"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    className="bg-gray-50 border border-gray-300 h-full text-gray-900 text-md rounded-lg block w-full p-2.5">
                                     <option value="">Active</option>
                                     <option value="">Inactive</option>
                                 </select>
@@ -123,7 +122,7 @@ export default function Employee(props: any) {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                            { employees&&employees?.data?.map((employee: any) => 
+                            {getCurrentPageData().map((employee: any) => 
                                 <>
                                     <tr>
                                         <td className="px-6 py-4 whitespace-nowrap">

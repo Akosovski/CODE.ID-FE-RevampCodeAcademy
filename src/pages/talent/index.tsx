@@ -80,8 +80,8 @@ export default function TalentList(props: any) {
 
                         <div className="ms-5 pt-1">
                             <select id="countries" className="h-12 bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-within:shadow-lg cursor-pointer">
-                                <option defaultValue="STATUS">STATUS</option>
-                                <option value="TRAIN">ON TRAINING</option>
+                                <option defaultValue="STATUS">Status</option>
+
                                 <option value="IDLE">IDLE</option>
                                 <option value="TRIAL">TRIAL</option>
                             </select>
@@ -99,7 +99,7 @@ export default function TalentList(props: any) {
                 <div className="flex p-10 gap-8 md:gap-10 lg:gap-15 pt-5 justify-center">
                     
                 {getCurrentPageData().map((talent: any) =>
-                    <div key={talent.empEntityId} className="min-w-[23%] lg:w-[25%] bg-white border border-gray-200 rounded-lg shadow">
+                    <div key={talent.userEntityId} className="min-w-[23%] lg:w-[25%] bg-white border border-gray-200 rounded-lg shadow">
                         <a href="#">
                             <Image className="rounded-t-lg mx-auto mt-4 brightness-125" width={180} height={180} src={profile} alt="example" />
                         </a>
@@ -107,11 +107,11 @@ export default function TalentList(props: any) {
                             <a href="#">
                                 <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">{talent.userFirstName}&nbsp;{talent.userLastName}</h5>
                             </a>
-                            <p className="text-center mb-3 text-md font-medium text-gray-900 dark:text-gray-400">Status</p>
+                            <p className="text-center mb-3 text-md font-medium text-gray-900">Status</p>
 
                             <div className="flex">
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Title</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700">{talent.batchTrainees[0].batrBatch.batchName}</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700">{talent.batchTrainees[0].batrBatch.batchEntity.progTitle}</p>
                             </div>
                             
                             <div className="flex gap-2 mt-3">
