@@ -4,7 +4,7 @@ import config from "@/config/config";
 
 const GetTalent = async (payload: any) => {
   try {
-      const { pages = 1, limit = 4} = payload;
+      const { pages = 1, limit = 5} = payload;
       const result = await axios.get(`${config.domain}/talent/paging?page=${pages}&limit=${limit}`);
 
       return result;

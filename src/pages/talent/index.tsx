@@ -26,12 +26,13 @@ export default function TalentList(props: any) {
 
     const [active, setActive] = React.useState(1);
 
-    let totalPages: number = Math.ceil(talents?.totalCount / talents?.limit);
-    console.log("totalPages : ", totalPages);
+    // Pagination
+    let totalPages: number = Math.ceil(talents?.totalCount / 4);
+    console.log("totalPages : ", Math.ceil(talents?.totalCount / 4));
     
     const getCurrentPageData = () => {
-        const startIndex = (active - 1) * (talents?.limit || 0);
-        const endIndex = startIndex + (talents?.limit || 0);
+        const startIndex = (active - 1) * (4 || 0);
+        const endIndex = startIndex + (4 || 0);
         return talents?.data?.slice(startIndex, endIndex) || [];
       };
 
