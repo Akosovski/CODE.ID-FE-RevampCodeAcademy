@@ -7,9 +7,9 @@ import TalentDetail from './talentDetail';
 
 export default function TalentDetailPage() {
   const router = useRouter();
-  const empEntityId = router.query.data;
+  const userEntityId = router.query.data;
 
-  console.log("empEntityId: ", empEntityId);
+  console.log("userEntityId: ", userEntityId);
 
-  return <TalentDetail empEntityId={empEntityId} />;
+  return <TalentDetail userEntityId={userEntityId} />;
 }

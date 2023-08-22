@@ -105,13 +105,13 @@ export default function TalentList(props: any) {
                         </a>
                         <div className="p-5">
                             <a href="#">
-                                <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">{talent.empEntity.userFirstName}&nbsp;{talent.empEntity.userLastName}</h5>
+                                <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">{talent.userFirstName}&nbsp;{talent.userLastName}</h5>
                             </a>
-                            <p className="text-center mb-3 text-md font-medium text-gray-900 dark:text-gray-400">{talent.employeeClientContracts.eccoStatus}Status</p>
+                            <p className="text-center mb-3 text-md font-medium text-gray-900 dark:text-gray-400">Status</p>
 
                             <div className="flex">
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">{talent.batches.batch_name}Batch</p>
-                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">{talent.programEntities.progTitle}Title</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Batch</p>
+                                <p className="grow text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Title</p>
                             </div>
                             
                             <div className="flex gap-2 mt-3">
@@ -151,7 +151,7 @@ export default function TalentList(props: any) {
 
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <Link href={`/talent/details/${talent.empEntityId}?data=${encodeURIComponent(talent.empEntityId)}`}>
+                                                    <Link href={`/talent/details/${talent.userEntityId}?data=${encodeURIComponent(talent.userEntityId)}`}>
                                                             <button
                                                                 className={`${active ? 'bg-gray-600 text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                                             >

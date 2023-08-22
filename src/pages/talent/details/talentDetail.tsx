@@ -12,20 +12,20 @@ export default function TalentDetail(props: any) {
   console.log("Talent: ", talent);
 
   useEffect(() => {
-    dispatch(GetOneTalentReq({ id: props.empEntityId }));
-  }, [dispatch, props.empEntityId]);
+    dispatch(GetOneTalentReq({ id: props.userEntityId }));
+  }, [dispatch, props.userEntityId]);
 
   return (
     <Layout>
         <div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
-          {talent && talent.empEntity && (
+          {talent && talent.batchTrainees && (
           <div>
             <div className="flex flex-cols border-b-2 border-gray-300">
 
               <div className="justify-items-start flex-1">
-                <h1 className="p-5 ps-10">Talent Profile ID-{talent.empEntityId}</h1>
+                <h1 className="p-5 ps-10">Talent Profile ID-{talent.userEntityId}</h1>
               </div>
 
               <div className="justify-items-end p-2 mt-1 me-20">
@@ -46,7 +46,7 @@ export default function TalentDetail(props: any) {
 
               <div className="justify-items-start grow ps-10">
                 <h5 className="mb-3 mt-4 text-[120%] font-bold">
-                  {talent.empEntity.userFirstName}&nbsp;{talent.empEntity.userLastName}
+                  {talent.userFirstName}&nbsp;{talent.userLastName}
                 </h5>
                 <h6 className="mb-3">NodeJS, Batch#15</h6>
                 <h6 className="mb-3">dd-mm-yyyy until dd-mm-yyyy</h6>
