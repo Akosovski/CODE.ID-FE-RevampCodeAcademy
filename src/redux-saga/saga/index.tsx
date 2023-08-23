@@ -3,7 +3,7 @@ import { takeEvery, all } from 'redux-saga/effects'
 import * as ActionTalent from '../constant/talentConstant'
 import * as ActionEmployee from '../constant/employeeConstant'
 
-import { handleGetTalent, handleGetOneTalent } from './talentSaga'
+import { handleGetTalent, handleGetOneTalent, handleSearchTalent } from './talentSaga'
 import { handleGetEmployee } from './employeeSaga'
 
 function* watchAll(){
@@ -11,6 +11,7 @@ function* watchAll(){
         // Talent
         takeEvery(ActionTalent.GET_DATA_REQ, handleGetTalent),
         takeEvery(ActionTalent.GET_ONE_DATA_REQ, handleGetOneTalent),
+        takeEvery(ActionTalent.SEARCH_DATA_REQ, handleSearchTalent),
 
         // Employee
         takeEvery(ActionEmployee.GET_EMPLOYEE_REQ, handleGetEmployee),

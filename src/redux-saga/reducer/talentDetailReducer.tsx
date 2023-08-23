@@ -10,8 +10,6 @@ const TalentDetailReducer = (state = INIT_STATE, action: any) => {
       return { ...state };
     case ActionType.GET_ONE_DATA_SUCCESS:
       return GetOneTalent(state, action);
-    //case ActionType.ADD_DATA_REQ:
-      //return { ...state };
     default:
       return { ...state };
   }

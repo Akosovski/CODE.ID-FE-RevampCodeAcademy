@@ -10,14 +10,23 @@ const TalentReducer = (state = INIT_STATE, action: any) => {
       return { ...state };
     case ActionType.GET_DATA_SUCCESS:
       return GetTalent(state, action);
-    //case ActionType.ADD_DATA_REQUEST:
-      //return { ...state };
+    case ActionType.SEARCH_DATA_REQ:
+      return { ...state };
+    case ActionType.SEARCH_DATA_SUCCESS:
+      return SearchTalent(state, action);
     default:
       return { ...state };
   }
 };
 
 const GetTalent = (state: any, action: any) => {
+  return {
+    ...state,
+    talents: action.payload,
+  };
+};
+
+const SearchTalent = (state: any, action: any) => {
   return {
     ...state,
     talents: action.payload,

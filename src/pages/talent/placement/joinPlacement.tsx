@@ -118,7 +118,13 @@ export default function TalentDetail(props: any) {
 
                 <div className="basis-1/2 p-5 pb-2">
                   <h2 className="font-bold">Status</h2>
-                  <p>IDLE</p>
+                  <p>
+                    {talent.userCurrentRole === 2 ? 'IDLE' : 
+                    talent.userCurrentRole === 12 ? 'PLACEMENT' : 
+                    talent.userCurrentRole === 13 ? 'TRIAL' : 
+                    talent.userCurrentRole === 1 ? 'ON BOOTCAMP' : 
+                    'Unknown'}
+                  </p>
                 </div>
 
               </div>

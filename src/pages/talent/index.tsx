@@ -4,7 +4,7 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Layout from '../components/layout/Layout';
-import { GetTalentReq, GetOneTalentReq, SearchTalentReq } from "@/redux-saga/action/talentAction";
+import { GetTalentReq, SearchTalentReq } from "@/redux-saga/action/talentAction";
 import Image from 'next/image';
 import profile from '@/pages/images/dummy_profile.png';
 import { IconButton, Typography } from "@material-tailwind/react";
@@ -14,6 +14,9 @@ import Link from 'next/link';
 
 export default function TalentList(props: any) {
     const [searchValue, setSearchValue] = useState('');
+    const [selectedStatus, setSelectedStatus] = useState(0);
+    const [searchDisplay, setSearchDisplay] = useState(false);
+    const [refresh, setRefresh] = useState(false);
     const dispatch = useDispatch();
 
     // Fetch Talents
@@ -21,14 +24,26 @@ export default function TalentList(props: any) {
     console.log("Talents : ", talents);
 
     useEffect(() => {
-        dispatch(GetTalentReq(1));
+        dispatch(GetTalentReq({}));
     }, [dispatch]);
 
     const [active, setActive] = React.useState(1);
 
+    // Search Talents
+    const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const payload = {
+            name: searchValue,
+            status: selectedStatus,
+        };
+        dispatch(SearchTalentReq(payload));
+        setSearchDisplay(true);
+        setActive(1);
+    };
+
     // Pagination
     let totalPages: number = Math.ceil(talents?.totalCount / 4);
-    console.log("totalPages : ", Math.ceil(talents?.totalCount / 4));
+    console.log("totalPages : ", totalPages);
     
     const getCurrentPageData = () => {
         const startIndex = (active - 1) * (4 || 0);
@@ -67,50 +82,58 @@ export default function TalentList(props: any) {
         <div className="grid grid-flow-col">
             <div className="col-span-8">
 
-                <form className="border-b-2 border-gray-300 pb-2"> 
-                    <div className="flex h-20 p-4 justify-center me-20">
-                        <div className="p-4 text-md">
-                            <p>Search by category</p>
-                        </div>
+            <form className="border-b-2 border-gray-300 pb-2" onSubmit={handleSearch}>
+                <div className="flex h-20 p-4 justify-center me-20">
+                    <div className="p-4 text-md">
+                    <p>Search by category</p>
+                    </div>
 
-                        <div className="m-1">
-                            <div className="border border-gray-300 relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-                                <div className="grid place-items-center h-full w-12 text-gray-300 bg-gray-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </div>
-
-                                <input
-                                className="peer h-full w-full outline-none text-sm text-gray-700 pr-2 bg-gray-50"
-                                type="text"
-                                id="search"
-                                placeholder="talent name, technology..." 
-                                value={searchValue}
-                                onChange={(e) => setSearchValue(e.target.value)}
-                                /> 
+                    <div className="m-1">
+                        <div className="border border-gray-300 relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+                            <div className="grid place-items-center h-full w-12 text-gray-300 bg-gray-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
                             </div>
-                        </div>
 
-                        <div className="ms-5 pt-1">
-                            <select className="h-12 bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-within:shadow-lg cursor-pointer">
-                                <option defaultValue="STATUS">Status</option>
-                                <option value="IDLE">IDLE</option>
-                                <option value="TRIAL">TRIAL</option>
-                            </select>
-                        </div>
-
-                        <div className="ms-5 pt-1.5">
-                            <button type="submit"
-                            className="p-4 text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Search</button>
+                            <input
+                            className="peer h-full w-full outline-none text-sm text-gray-700 pr-2 bg-gray-50"
+                            type="text"
+                            id="search"
+                            placeholder="talent name..." 
+                            value={searchValue}
+                            onChange={(e) => setSearchValue(e.target.value)}
+                            /> 
                         </div>
                     </div>
-                </form>
+
+                    <div className="ms-5 pt-1">
+                    <select
+                        className="h-12 bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-within:shadow-lg cursor-pointer"
+                        value={selectedStatus}
+                        onChange={(e) => setSelectedStatus(Number(e.target.value))}>
+                            <option value={0}>Status</option>
+                            <option value={1} onClick={() => { setSelectedStatus(1); }}>ON BOOTCAMP</option>
+                            <option value={2} onClick={() => { setSelectedStatus(2); }}>IDLE</option>
+                            <option value={13} onClick={() => { setSelectedStatus(13); }}>TRIAL</option>
+                    </select>
+                    </div>
+
+                    <div className="ms-5 pt-1.5">
+                        <button
+                            type="submit"
+                            className="p-4 text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 
+                            bg-gray-600 hover:bg-gray-700 focus:ring-gray-800">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
                 
                 <h1 className="p-10 pt-5 pb-1 text-md">Choose talent for placement</h1>
                 
                 <div className="flex p-10 gap-8 md:gap-10 lg:gap-15 pt-5 justify-center">
-                    
+
                 {getCurrentPageData().map((talent: any) =>
                     <div key={talent.userEntityId} className="min-w-[23%] lg:w-[25%] bg-white border border-gray-200 rounded-lg shadow">
                         <div>
@@ -121,7 +144,11 @@ export default function TalentList(props: any) {
                                 <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">{talent.userFirstName}&nbsp;{talent.userLastName}</h5>
                             </a>
                             <p className="text-center mb-3 text-md font-medium text-gray-900">
-                                {talent.userCurrentRole === 2 ? 'IDLE' : talent.userCurrentRole === 12 ? 'TRIAL' : 'Unknown'}
+                                {talent.userCurrentRole === 2 ? 'IDLE' : 
+                                talent.userCurrentRole === 12 ? 'PLACEMENT' : 
+                                talent.userCurrentRole === 13 ? 'TRIAL' : 
+                                talent.userCurrentRole === 1 ? 'ON BOOTCAMP' : 
+                                'Unknown'}
                             </p>
 
                             <div className="flex">

@@ -10,8 +10,6 @@ const EmployeeReducer = (state = INIT_STATE, action: any) => {
       return { ...state };
     case ActionType.GET_EMPLOYEE_SUCCESS:
       return GetEmployee(state, action);
-    //case ActionType.ADD_EMPLOYEE_REQUEST:
-      //return { ...state };
     default:
       return { ...state };
   }

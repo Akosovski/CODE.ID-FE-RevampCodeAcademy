@@ -12,7 +12,7 @@ export const GetOneTalentSuccess = (payload : any) => ({
 })
 
 export const GetOneTalentFail = (payload: any) => ({
-    type: ActionTalent.GET_ONE_DATA_FAILED,
+    type:ActionTalent.GET_ONE_DATA_FAILED,
     payload
 })
 
@@ -23,27 +23,27 @@ export const GetTalentReq = (payload : any) =>({
 })
 
 export const GetTalentSuccess = (payload : any) => ({
-    type: ActionTalent.GET_DATA_SUCCESS,
+    type:ActionTalent.GET_DATA_SUCCESS,
     payload
 })
 
 export const GetTalentFail = (payload: any) => ({
-    type: ActionTalent.GET_DATA_FAILED,
+    type:ActionTalent.GET_DATA_FAILED,
     payload
 })
 
 // Search
-export const SearchTalentReq = (payload : any) => ({
-    type: ActionTalent.SEARCH_DATA_REQ,
+export const SearchTalentReq = (payload: any) => ({
+    type:ActionTalent.SEARCH_DATA_REQ,
     payload
-})
+});
 
 export const SearchTalentSuccess = (payload : any) => ({
-    type: ActionTalent.SEARCH_DATA_SUCCESS,
+    type:ActionTalent.SEARCH_DATA_SUCCESS,
     payload
 })
 
 export const SearchTalentFailed = (payload : any) => ({
-    type: ActionTalent.SEARCH_DATA_FAILED,
+    type:ActionTalent.SEARCH_DATA_FAILED,
     payload
 })
