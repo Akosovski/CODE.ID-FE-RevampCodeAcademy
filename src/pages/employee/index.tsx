@@ -132,16 +132,16 @@ export default function Employee(props: any) {
                                             {employee.empNationalId}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {employee.empEntity.userFirstName}
+                                            {employee.empEntity?.userFirstName}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {employee.BirthDate}
+                                            {employee.empBirthDate}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {employee.HireDate}
+                                            {employee.empHireDate}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {employee.employeeClientContracts.eccoStatus}
+                                            {employee.employeeClientContracts?.eccoStatus}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                         <Link href="/employee/editPage">

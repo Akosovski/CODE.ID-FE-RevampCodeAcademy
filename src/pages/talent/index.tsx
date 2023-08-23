@@ -244,7 +244,7 @@ export default function TalentList(props: any) {
 
                                                     <div className="mb-6">
                                                         <label htmlFor="notes" className="block mb-2 text-sm font-medium text-gray-900">Notes</label>
-                                                        <input type="notes" id="notes" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" required/>
+                                                        <input type="notes" id="notes" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" placeholder="notes..." required/>
                                                     </div>
                                     
                                                 </div>

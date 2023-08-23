@@ -87,12 +87,11 @@ export default function TalentDetail(props: any) {
               <div className="justify-items-end bg-gray-200 overflow-clip">
                 <h5 className="m-10 mb-2 mt-9 text-[110%]">Scale Skill (1-4)</h5>
                 
-                <div className="ms-12 text-[140%]">
+                <div className="ms-16 text-[140%]">
                   <span className="fa fa-star checked"></span>
                   <span className="fa fa-star checked"></span>
                   <span className="fa fa-star checked"></span>
-                  <span className="fa fa-star checked"></span>
-                  <span className="fa fa-star"></span>
+                  <span className="fa fa-star-half-o checked"></span>
                 </div>
                 
               </div>
