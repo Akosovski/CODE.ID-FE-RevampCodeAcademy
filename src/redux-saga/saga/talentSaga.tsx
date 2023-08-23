@@ -1,10 +1,10 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 import talent from '@/pages/api/talent'
 import { 
     GetTalentFail, 
     GetTalentSuccess, 
     GetOneTalentFail, 
-    GetOneTalentSuccess 
+    GetOneTalentSuccess,
 } from '../action/talentAction'
 
 function* handleGetTalent(action: any): any {

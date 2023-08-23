@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetOneTalentReq } from '@/redux-saga/action/talentAction';
 import Layout from '@/pages/components/layout/Layout';
@@ -8,14 +8,13 @@ import profile from '@/pages/images/dummy_profile.png';
 
 export default function TalentDetail(props: any) {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-  const [refresh, setRefresh] = useState(false);
 
   const { talent } = useSelector((state: any) => state.talentDetailState);
+  console.log("Talent: ", talent);
 
   useEffect(() => {
     dispatch(GetOneTalentReq({ id: props.userEntityId }));
-  }, [dispatch, props.userEntityId, refresh]);
+  }, [dispatch, props.userEntityId]);
 
   function formatDate(dateString: string): string {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -32,15 +31,15 @@ export default function TalentDetail(props: any) {
             <div className="flex flex-cols border-b-2 border-gray-300">
 
               <div className="justify-items-start flex-1">
-                <h1 className="p-5 ps-10">Talent Profile ID-{talent.userEntityId} / DETAILS</h1>
+                <h1 className="p-5 ps-10">Talent Profile ID-{talent.userEntityId} / PLACEMENT</h1>
               </div>
 
               <div className="justify-items-end p-2 mt-1 me-20">
-                <Link href={`/talent/placement/${talent.userEntityId}?data=${encodeURIComponent(talent.userEntityId)}`}>
-                  <button className="text-white bg-gray-600 hover:bg-gray-700 
-                  focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium 
-                  rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Join to Placement</button>
-                </Link>
+                
+                <button className="text-white bg-gray-600 hover:bg-gray-700 
+                focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium 
+                rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Create / Change Placement</button>
+
               </div>
               
             </div>
@@ -138,6 +137,9 @@ export default function TalentDetail(props: any) {
               </div>
 
               <div className="flex flex-row ms-9 me-9 mt-1 mb-12 justify-end pe-16">
+              <button className="text-white bg-gray-600 hover:bg-gray-700 
+                  focus:outline-none focus:ring-4 focus:ring-gray-300
+                  rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Switch to Idle</button>
                 <Link href={`/talent/`}>
                 <button className="text-white bg-gray-600 hover:bg-gray-700 
                   focus:outline-none focus:ring-4 focus:ring-gray-300

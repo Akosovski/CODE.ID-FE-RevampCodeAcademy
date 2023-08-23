@@ -24,6 +24,7 @@ const GetOneTalent = async (payload: any) => {
   }
 };
 
+
 export default {
   GetTalent,
   GetOneTalent,

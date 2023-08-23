@@ -81,7 +81,6 @@ export default function TalentList(props: any) {
                         <div className="ms-5 pt-1">
                             <select id="countries" className="h-12 bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-within:shadow-lg cursor-pointer">
                                 <option defaultValue="STATUS">Status</option>
-
                                 <option value="IDLE">IDLE</option>
                                 <option value="TRIAL">TRIAL</option>
                             </select>
@@ -107,7 +106,9 @@ export default function TalentList(props: any) {
                             <a href="#">
                                 <h5 className="text-center mb-3 text-[120%] font-bold tracking-tight text-gray-900">{talent.userFirstName}&nbsp;{talent.userLastName}</h5>
                             </a>
-                            <p className="text-center mb-3 text-md font-medium text-gray-900">Status</p>
+                            <p className="text-center mb-3 text-md font-medium text-gray-900">
+                            {talent.userCurrentRole === 2 ? 'IDLE' : talent.userCurrentRole === 12 ? 'TRIAL' : 'Unknown'}
+                            </p>
 
                             <div className="flex">
                                 <p className="grow text-center mb-3 font-normal text-gray-700">{talent.batchTrainees[0].batrBatch.batchName}</p>
@@ -115,9 +116,13 @@ export default function TalentList(props: any) {
                             </div>
                             
                             <div className="flex gap-2 mt-3">
-                                <a href="#" className="grow inline-flex justify-center px-3 py-2 text-md font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800">
-                                    Join Placement
-                                </a>
+                                <div className="grow">
+                                    <Link href={`/talent/placement/${talent.userEntityId}?data=${encodeURIComponent(talent.userEntityId)}`}>
+                                        <button className="w-full inline-flex justify-center px-3 py-2 text-md font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800">
+                                            Join Placement
+                                        </button>
+                                    </Link>
+                                </div>
 
                                 <Menu as="div">
                                     <Menu.Button className="dropdots inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:bg-gray-200" type="button"> 
