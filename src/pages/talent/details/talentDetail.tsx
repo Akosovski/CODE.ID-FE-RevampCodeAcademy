@@ -67,7 +67,7 @@ export default function TalentDetail(props: any) {
                   <span className="fa fa-star checked"></span>
                   <span className="fa fa-star checked"></span>
                   <span className="fa fa-star checked"></span>
-                  <span className="fa fa-star"></span>
+                  <span className="fa fa-star-half-o checked"></span>
                 </div>
                 
               </div>
@@ -94,7 +94,7 @@ export default function TalentDetail(props: any) {
 
                 <div className="basis-1/2 p-5 pb-2">
                   <h2 className="font-bold">Status</h2>
-                  <p>Idle</p>
+                  <p>IDLE</p>
                 </div>
 
               </div>
