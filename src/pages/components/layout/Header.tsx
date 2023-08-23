@@ -29,30 +29,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { doPushSignoutRequest } from '@/redux-saga/action/userAction';
 import CODEID from '@/pages/images/codeid.png';
 
-const solutions = [
-    {
-        name: 'Company Training',
-        description: 'Upgrade your employees skill with latest technology.',
-        href: '#',
-        icon: TrendingUpIcon,
-    },
-    {
-        name: 'Partner With Us',
-        description: 'Work together with many other organizations with us.',
-        href: '#',
-        icon: UserGroupIcon,
-    },
-    { name: 'Live Chat', description: "Need information, contact live chat with us", href: '#', icon: ChatAlt2Icon },
-    {
-        name: 'Knowledge Base',
-        description: "Connect with third-party tools that you're already using.",
-        href: '#',
-        icon: QuestionMarkCircleIcon,
-    },
-];
-
-
-
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
@@ -186,22 +162,6 @@ export default function LandingPage(props: { children: any; }) {
                                                         <XIcon className="h-6 w-6" aria-hidden="true" />
                                                     </Popover.Button>
                                                 </div>
-                                            </div>
-                                            <div className="mt-6">
-                                                <nav className="grid grid-cols-1 gap-7">
-                                                    {solutions.map((item) => (
-                                                        <Link
-                                                            key={item.name}
-                                                            href={item.href}
-                                                            className="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50"
-                                                        >
-                                                            <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-                                                                <item.icon className="h-6 w-6" aria-hidden="true" />
-                                                            </div>
-                                                            <div className="ml-4 text-base font-medium text-gray-900">{item.name}</div>
-                                                        </Link>
-                                                    ))}
-                                                </nav>
                                             </div>
                                         </div>
                                         <div className="py-6 px-5">

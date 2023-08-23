@@ -186,102 +186,109 @@ export default function TalentList(props: any) {
                                 </Transition>
                             </Menu>
                             
-                            </div>
-                        </div>
-
-                        <Transition appear show={isOpen} as={Fragment}>
-                            <Dialog as="div" className="relative z-10" onClose={() => {}}>
-                                <Transition.Child
-                                    as={Fragment}
-                                    enter="ease-out duration-300"
-                                    enterFrom="opacity-0"
-                                    enterTo="opacity-100"
-                                    leave="ease-in duration-200"
-                                    leaveFrom="opacity-100"
-                                    leaveTo="opacity-0"
-                                >
-                                    <div className="fixed inset-0 bg-black bg-opacity-25"/>
-                                </Transition.Child>
-
-                                <div className="fixed inset-0 overflow-y-auto">
-                                    <div className="flex min-h-full items-center justify-center p-4 text-center">
+                            {talent.userEntityId === modalId && (
+                                <Transition appear show={isOpen} as={Fragment}>
+                                <Dialog as="div" className="relative z-10" onClose={() => {}}>
                                     <Transition.Child
                                         as={Fragment}
                                         enter="ease-out duration-300"
-                                        enterFrom="opacity-0 scale-95"
-                                        enterTo="opacity-100 scale-100"
+                                        enterFrom="opacity-0"
+                                        enterTo="opacity-100"
                                         leave="ease-in duration-200"
-                                        leaveFrom="opacity-100 scale-100"
-                                        leaveTo="opacity-0 scale-95"
+                                        leaveFrom="opacity-100"
+                                        leaveTo="opacity-0"
                                     >
-                                        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-
-                                            <Dialog.Title
-                                                as="h3"
-                                                className="text-lg font-medium leading-6 text-gray-900"
-                                            >
-                                                Set Status to <span className="text-lg font-bold leading-6 text-gray-900">{talent.userFirstName}&nbsp;{talent.userLastName}</span>
-                                            </Dialog.Title>
-
-                                            <form>
-                                                <div className="mt-5">
-                                                
-                                                    <div className="mb-6">
-                                                        <label htmlFor="status" className="block mb-2 text-sm font-medium text-gray-900">Status Type</label>
-                                                        <select id="status" className="h-12 bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-within:shadow-lg cursor-pointer">
-                                                            <option defaultValue="STATUS">Status</option>
-                                                            <option value="ONBOOTCAMP">ON BOOTCAMP</option>
-                                                            <option value="IDLE">IDLE</option>
-                                                            <option value="TRIAL">TRIAL</option>
-                                                            <option value="PLACEMENT">PLACEMENT</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div className="mb-6">
-                                                        <label htmlFor="periodStart" className="block mb-2 text-sm font-medium text-gray-900">Start Date</label>
-                                                        <input type="date" id="periodStart" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" placeholder="date" required/>
-                                                    </div>
-
-                                                    <div className="mb-6">
-                                                        <label htmlFor="notes" className="block mb-2 text-sm font-medium text-gray-900">Notes</label>
-                                                        <input type="notes" id="notes" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" placeholder="notes..." required/>
-                                                    </div>
-                                    
-                                                </div>
-                                                
-                                                <div className="flex flex-row gap-5 justify-end">
-                                                    <div className="mt-2">
-                                                        <button
-                                                        type="button"
-                                                        className="w-full inline-flex justify-center px-3 py-2 text-md 
-                                                        font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800"
-                                                        >
-                                                        Change Status
-                                                        </button>
-                                                    </div>
-                                                    <div className="mt-2">
-                                                        <button
-                                                        type="button"
-                                                        className="w-full inline-flex justify-center px-3 py-2 text-md 
-                                                        font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800"
-                                                        onClick={closeModal}
-                                                        >
-                                                        Cancel
-                                                        </button>
+                                        <div className="fixed inset-0 bg-black bg-opacity-25"/>
+                                    </Transition.Child>
+                        
+                                    <div className="fixed inset-0 overflow-y-auto">
+                                        <div className="flex min-h-full items-center justify-center p-4 text-center">
+                                        <Transition.Child
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0 scale-95"
+                                            enterTo="opacity-100 scale-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100 scale-100"
+                                            leaveTo="opacity-0 scale-95"
+                                        >
+                                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                        
+                                                <Dialog.Title
+                                                    as="h3"
+                                                    className="text-lg font-medium leading-6 text-gray-900"
+                                                >
+                                                    Set Status to <span className="text-lg font-bold leading-6 text-gray-900">
+                                                        {talent.userFirstName} 
+                                                        &nbsp;
+                                                        {talent.userLastName}
+                                                    </span>
+                                                </Dialog.Title>
+                        
+                                                <form>
+                                                    <div className="mt-5">
+                                                    
+                                                        <div className="mb-6">
+                                                            <label htmlFor="status" className="block mb-2 text-sm font-medium text-gray-900">Status Type</label>
+                                                            <select id="status" className="h-12 bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-within:shadow-lg cursor-pointer">
+                                                                <option defaultValue="STATUS">Status</option>
+                                                                <option value="ONBOOTCAMP">ON BOOTCAMP</option>
+                                                                <option value="IDLE">IDLE</option>
+                                                                <option value="TRIAL">TRIAL</option>
+                                                                <option value="PLACEMENT">PLACEMENT</option>
+                                                            </select>
+                                                        </div>
+                        
+                                                        <div className="mb-6">
+                                                            <label htmlFor="periodStart" className="block mb-2 text-sm font-medium text-gray-900">Start Date</label>
+                                                            <input type="date" id="periodStart" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" placeholder="date" required/>
+                                                        </div>
+                        
+                                                        <div className="mb-6">
+                                                            <label htmlFor="notes" className="block mb-2 text-sm font-medium text-gray-900">Notes</label>
+                                                            <input type="notes" id="notes" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" placeholder="notes..." required/>
+                                                        </div>
+                                        
                                                     </div>
                                                     
-                                                </div>
-                                            </form>
-
-                                        </Dialog.Panel>
-                                    </Transition.Child>
-                                </div>
+                                                    <div className="flex flex-row gap-5 justify-end">
+                                                        <div className="mt-2">
+                                                            <button
+                                                            type="button"
+                                                            className="w-full inline-flex justify-center px-3 py-2 text-md 
+                                                            font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800"
+                                                            >
+                                                            Change Status
+                                                            </button>
+                                                        </div>
+                                                        <div className="mt-2">
+                                                            <button
+                                                            type="button"
+                                                            className="w-full inline-flex justify-center px-3 py-2 text-md 
+                                                            font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800"
+                                                            onClick={closeModal}
+                                                            >
+                                                            Cancel
+                                                            </button>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </form>
+                        
+                                            </Dialog.Panel>
+                                        </Transition.Child>
+                                        </div>
+                                    </div>
+                                    </Dialog>
+                                </Transition>
+                            )}
+                            
                             </div>
-                            </Dialog>
-                        </Transition>
+                        </div>
+
                     </div>
                     
-                )}
+                )}                                
 
                 </div>
             </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link';
@@ -37,7 +38,7 @@ const solutions = [
     },
     {
         name: 'Partner With Us',
-        description: '.',
+        description: 'Work together with many other organizations with us.',
         href: '#',
         icon: UserGroupIcon,
     },
