@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetOneTalentReq } from '@/redux-saga/action/talentAction';
+import { GetOneTalentReq, EditStatusReq } from "@/redux-saga/action/talentAction";
 import Layout from '@/pages/components/layout/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,6 +9,8 @@ import profile from '@/pages/images/dummy_profile.png';
 
 export default function TalentDetail(props: any) {
   const dispatch = useDispatch();
+  const [statusChangeID, setStatusChangeID] = useState(0);
+  const [modifiedDate, setModifiedDate] = useState('');
 
   const { talent } = useSelector((state: any) => state.talentDetailState);
   console.log("Talent: ", talent);
@@ -21,6 +23,19 @@ export default function TalentDetail(props: any) {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
+
+  // Edit Status
+  const handleStatusEdit = (event: React.FormEvent<HTMLFormElement>) => {
+    const combinedDateTime = `${modifiedDate}T14:30:00.000Z`;
+    console.log(combinedDateTime);
+    event.preventDefault();
+    const payload = {
+        id: props.userEntityId,
+        newRole: 2,
+        modifiedDate: combinedDateTime,
+    };
+    dispatch(EditStatusReq(payload));
+  };
 
   // Set Modal State
   let [isOpen, setIsOpen] = useState(false);
@@ -254,7 +269,8 @@ export default function TalentDetail(props: any) {
 
                                       <div className="mb-6">
                                           <label htmlFor="notes" className="block mb-2 text-sm font-medium text-gray-900">Notes</label>
-                                          <input type="notes" id="notes" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" required/>
+                                          <input type="notes" id="notes" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" 
+                                          onChange={() => { setStatusChangeID(talent.userEntityId); }} required/>
                                       </div>
                         
                                     </div>
@@ -262,7 +278,7 @@ export default function TalentDetail(props: any) {
                                     <div className="flex flex-row gap-5 justify-end">
                                         <div className="mt-2">
                                             <button
-                                            type="button"
+                                            type="submit"
                                             className="w-full inline-flex justify-center px-3 py-2 text-md 
                                             font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800"
                                             >
@@ -324,12 +340,14 @@ export default function TalentDetail(props: any) {
                                     Set Idle For <span className="text-lg font-bold leading-6 text-gray-900">{talent.userFirstName}&nbsp;{talent.userLastName}</span>
                                 </Dialog.Title>
 
-                                <form>
+                                <form onSubmit={handleStatusEdit}>
                                     <div className="mt-5">
 
                                       <div className="mb-6">
                                           <label htmlFor="periodStart" className="block mb-2 text-sm font-medium text-gray-900">Start Date</label>
-                                          <input type="date" id="periodStart" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" placeholder="date" required/>
+                                          <input type="date" id="periodStart" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" 
+                                          onChange={(event) => setModifiedDate(event.target.value)} 
+                                          required/>
                                       </div>
 
                                       <div className="mb-6">
@@ -342,7 +360,7 @@ export default function TalentDetail(props: any) {
                                     <div className="flex flex-row gap-5 justify-end">
                                         <div className="mt-2">
                                             <button
-                                            type="button"
+                                            type="submit"
                                             className="w-full inline-flex justify-center px-3 py-2 text-md 
                                             font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800"
                                             >

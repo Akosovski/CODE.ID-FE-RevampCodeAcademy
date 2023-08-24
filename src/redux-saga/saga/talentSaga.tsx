@@ -7,6 +7,8 @@ import {
     GetOneTalentSuccess,
     SearchTalentFailed,
     SearchTalentSuccess,
+    EditStatusFailed,
+    EditStatusSuccess,
 } from '../action/talentAction'
 
 function* handleGetTalent(action: any): any {
@@ -39,8 +41,20 @@ function* handleSearchTalent(action: any): any {
     }
 }
 
+function* handleEditStatus(action: any): any {
+    const { payload } = action
+    try {
+        const result = yield call(talent.EditStatus, payload)
+        yield put(EditStatusSuccess([result.data]))
+    } catch (error) {
+        yield put(EditStatusFailed(error))
+
+    }
+}
+
 export {
     handleGetTalent,
     handleGetOneTalent,
     handleSearchTalent,
+    handleEditStatus,
 }

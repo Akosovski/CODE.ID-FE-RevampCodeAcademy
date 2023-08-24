@@ -35,9 +35,21 @@ const SearchTalent = async (payload: any) => {
   }
 };
 
+const EditStatus = async (payload: any) => {
+  try {
+      const { id = 0 } = payload;
+      console.log(`Payload: ${JSON.stringify(payload)}`);
+      
+      const result = await axios.put(`${config.domain}/talent/status/${id}`, payload);
+      return result;
+  } catch (error) {
+      return error;
+  }
+}
 
 export default {
   GetTalent,
   GetOneTalent,
   SearchTalent,
+  EditStatus,
 };

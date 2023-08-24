@@ -14,6 +14,10 @@ const TalentReducer = (state = INIT_STATE, action: any) => {
       return { ...state };
     case ActionType.SEARCH_DATA_SUCCESS:
       return SearchTalent(state, action);
+    case ActionType.EDIT_DATA_REQ:
+      return { ...state };
+    case ActionType.EDIT_DATA_SUCCESS:
+      return EditStatus(state, action);
     default:
       return { ...state };
   }
@@ -27,6 +31,13 @@ const GetTalent = (state: any, action: any) => {
 };
 
 const SearchTalent = (state: any, action: any) => {
+  return {
+    ...state,
+    talents: action.payload,
+  };
+};
+
+const EditStatus = (state: any, action: any) => {
   return {
     ...state,
     talents: action.payload,

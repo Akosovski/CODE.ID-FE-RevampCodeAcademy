@@ -4,12 +4,13 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Layout from '../components/layout/Layout';
-import { GetTalentReq, SearchTalentReq } from "@/redux-saga/action/talentAction";
+import { GetTalentReq, SearchTalentReq, EditStatusReq } from "@/redux-saga/action/talentAction";
 import Image from 'next/image';
 import profile from '@/pages/images/dummy_profile.png';
 import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/outline";
 import { Menu, Dialog, Transition } from '@headlessui/react';
+import { useFormik } from "formik";
 import Link from 'next/link';
 
 export default function TalentList(props: any) {
@@ -17,6 +18,11 @@ export default function TalentList(props: any) {
     const [selectedStatus, setSelectedStatus] = useState(0);
     const [searchDisplay, setSearchDisplay] = useState(false);
     const [refresh, setRefresh] = useState(false);
+
+    const [statusChangeID, setStatusChangeID] = useState(0);
+    const [roleValue, setRoleValue] = useState(0);
+    const [modifiedDate, setModifiedDate] = useState('');
+
     const dispatch = useDispatch();
 
     // Fetch Talents
@@ -38,6 +44,20 @@ export default function TalentList(props: any) {
         };
         dispatch(SearchTalentReq(payload));
         setSearchDisplay(true);
+        setActive(1);
+    };
+
+    // Edit Status
+    const handleStatusEdit = (event: React.FormEvent<HTMLFormElement>) => {
+        const combinedDateTime = `${modifiedDate}T14:30:00.000Z`;
+        console.log(combinedDateTime);
+        event.preventDefault();
+        const payload = {
+            id: statusChangeID,
+            newRole: roleValue,
+            modifiedDate: combinedDateTime,
+        };
+        dispatch(EditStatusReq(payload));
         setActive(1);
     };
 
@@ -252,28 +272,32 @@ export default function TalentList(props: any) {
                                                     </span>
                                                 </Dialog.Title>
                         
-                                                <form>
+                                                <form onSubmit={handleStatusEdit}>
                                                     <div className="mt-5">
                                                     
                                                         <div className="mb-6">
                                                             <label htmlFor="status" className="block mb-2 text-sm font-medium text-gray-900">Status Type</label>
                                                             <select id="status" className="h-12 bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-within:shadow-lg cursor-pointer">
-                                                                <option defaultValue="STATUS">Status</option>
-                                                                <option value="ONBOOTCAMP">ON BOOTCAMP</option>
-                                                                <option value="IDLE">IDLE</option>
-                                                                <option value="TRIAL">TRIAL</option>
-                                                                <option value="PLACEMENT">PLACEMENT</option>
+                                                                <option value={0}>Status</option>
+                                                                <option value={1} onClick={() => { setRoleValue(1); }}>ON BOOTCAMP</option>
+                                                                <option value={2} onClick={() => { setRoleValue(2); }}>IDLE</option>
+                                                                <option value={13} onClick={() => { setRoleValue(13); }}>TRIAL</option>
+                                                                <option value={13} onClick={() => { setRoleValue(12); }}>PLACEMENT</option>
                                                             </select>
                                                         </div>
                         
                                                         <div className="mb-6">
                                                             <label htmlFor="periodStart" className="block mb-2 text-sm font-medium text-gray-900">Start Date</label>
-                                                            <input type="date" id="periodStart" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" placeholder="date" required/>
+                                                            <input type="date" id="periodStart" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" 
+                                                            onChange={(event) => setModifiedDate(event.target.value)} 
+                                                            required/>
                                                         </div>
                         
                                                         <div className="mb-6">
                                                             <label htmlFor="notes" className="block mb-2 text-sm font-medium text-gray-900">Notes</label>
-                                                            <input type="notes" id="notes" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" placeholder="notes..." required/>
+                                                            <input type="notes" id="notes" className="bg-gray-50 focus:drop-shadow-md border border-gray-300 text-gray-900 outline-none text-sm rounded-lg block w-full p-2.5" 
+                                                            onChange={() => { setStatusChangeID(talent.userEntityId); }}
+                                                            placeholder="notes..." required/>
                                                         </div>
                                         
                                                     </div>
@@ -281,7 +305,7 @@ export default function TalentList(props: any) {
                                                     <div className="flex flex-row gap-5 justify-end">
                                                         <div className="mt-2">
                                                             <button
-                                                            type="button"
+                                                            type="submit"
                                                             className="w-full inline-flex justify-center px-3 py-2 text-md 
                                                             font-medium text-center text-white rounded-lg bg-gray-600 hover:bg-gray-800"
                                                             >

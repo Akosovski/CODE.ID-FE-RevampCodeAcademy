@@ -47,3 +47,20 @@ export const SearchTalentFailed = (payload : any) => ({
     type:ActionTalent.SEARCH_DATA_FAILED,
     payload
 })
+
+// Edit
+export const EditStatusReq = (payload : any) => ({
+    type: ActionTalent.EDIT_DATA_REQ,
+    payload
+})
+
+export const EditStatusSuccess = (payload : any) => ({
+    type: ActionTalent.EDIT_DATA_SUCCESS,
+    payload
+})
+
+export const EditStatusFailed = (payload : any) => ({
+    type:ActionTalent.EDIT_DATA_FAILED,
+    payload
+})
+
