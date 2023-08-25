@@ -9,6 +9,8 @@ import {
     SearchTalentSuccess,
     EditStatusFailed,
     EditStatusSuccess,
+    CreateContractFailed,
+    CreateContractSuccess,
 } from '../action/talentAction'
 
 function* handleGetTalent(action: any): any {
@@ -52,9 +54,22 @@ function* handleEditStatus(action: any): any {
     }
 }
 
+function* handleCreateContract(action: any): any {
+    const { payload } = action
+    try {
+        const result = yield call(talent.CreateContract, payload)
+        yield put(CreateContractSuccess([result.data]))
+    } catch (error) {
+        yield put(CreateContractFailed(error))
+
+    }
+}
+
+
 export {
     handleGetTalent,
     handleGetOneTalent,
     handleSearchTalent,
     handleEditStatus,
+    handleCreateContract,
 }

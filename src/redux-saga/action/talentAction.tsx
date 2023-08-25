@@ -64,3 +64,18 @@ export const EditStatusFailed = (payload : any) => ({
     payload
 })
 
+// Create
+export const CreateContractReq = (payload : any) => ({
+    type: ActionTalent.CREATE_DATA_REQ,
+    payload
+})
+
+export const CreateContractSuccess = (payload : any) => ({
+    type: ActionTalent.CREATE_DATA_SUCCESS,
+    payload
+})
+
+export const CreateContractFailed = (payload : any) => ({
+    type:ActionTalent.CREATE_DATA_FAILED,
+    payload
+})

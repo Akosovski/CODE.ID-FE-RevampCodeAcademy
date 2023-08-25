@@ -13,3 +13,7 @@ export const SEARCH_DATA_FAILED = 'search/data/failed'
 export const EDIT_DATA_REQ = 'edit/data/request'
 export const EDIT_DATA_SUCCESS = 'edit/data/success'
 export const EDIT_DATA_FAILED = 'edit/data/failed'
+
+export const CREATE_DATA_REQ = 'create/data/request'
+export const CREATE_DATA_SUCCESS = 'create/data/success'
+export const CREATE_DATA_FAILED = 'create/data/failed'
