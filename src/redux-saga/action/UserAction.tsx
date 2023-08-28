@@ -1,60 +1,37 @@
-import * as UserAction from "../constant/UserConstant";
+import * as userAction from '../constant/userConstant';
 
-export const GetUserReq = (payload: any) => ({
-  type: UserAction.GET_USER_REQ,
-  payload
-});
-
-export const GetUserSuccess = (payload: any) => ({
-  type: UserAction.GET_USER_OK,
-  payload
-});
-
-export const GetUserFail = (error: any) => ({
-  type: UserAction.GET_USER_FAIL,
-  error
-});
-
-export const UserSigninRequest = (payload: any) => ({
-  type: UserAction.USER_SIGNIN_REQUEST,
-  payload
+export const userSignupReq = (payload:any) =>({
+    type : userAction.USER_SIGNUP_REQ,
+    payload
 })
-
-export const UserSigninSuccess = (payload: any) => ({
-  type: UserAction.USER_SIGNIN_SUCCESS,
-  payload
+export const userSignupSuccess = (payload:any) =>({
+    type : userAction.USER_SIGNUP_SUCCESS,
+    payload
 })
-
-export const UserSigninFailed = (payload: any) => ({
-  type: UserAction.USER_SIGNIN_FAILED,
-  payload
+export const userSignupFail = (payload:any) =>({
+    type : userAction.USER_SIGNUP_FAIL,
+    payload
 })
-
-export const UserSignupRequest = (payload: any) => ({
-  type: UserAction.USER_SIGNUP_REQUEST,
-  payload
+export const getDataAllUserReq = () =>({
+    type : userAction.GET_ALL_USER_REQ,
 })
-
-export const UserSignupSuccess = (payload: any) => ({
-  type: UserAction.USER_SIGNUP_SUCCESS,
-  payload
+export const getDataAllUserSuccess = (payload:any) =>({
+    type : userAction.GET_ALL_USER_SUCCESS,
+    payload
 })
-
-export const UserSignupFailed = (payload: any) => ({
-  type: UserAction.USER_SIGNUP_FAILED,
-  payload
+export const getDataAllUserFail = (payload:any) =>({
+    type : userAction.GET_ALL_USER_FAIL,
+    payload
 })
-
-export const doPushSignoutRequest = () => ({
-  type: UserAction.USER_SIGNOUT_REQUEST,
+export const getDataOneUserReq = (id:any) =>({
+    type : userAction.GET_ONE_USER_REQ,
+    id
 })
-
-export const UserSignoutSuccess = (payload: any) => ({
-  type: UserAction.USER_SIGNOUT_SUCCESS,
-  payload
+export const getDataOneUserSuccess = (payload:any) =>({
+    type : userAction.GET_ONE_USER_SUCCESS,
+    payload
 })
-
-export const UserSignoutFailed = (payload: any) => ({
-  type: UserAction.USER_SIGNOUT_FAILED,
-  payload
+export const getDataOneUserFail = (payload:any) =>({
+    type : userAction.GET_ONE_USER_FAIL,
+    payload
 })

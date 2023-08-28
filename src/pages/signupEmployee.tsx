@@ -2,7 +2,7 @@
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { userSignupReq } from "@/redux-saga/action/userAction";
+import { employeeSignupReq } from "@/redux-saga/action/employeeAction";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
 import * as Yup from "yup";
 import Link from "next/link";
@@ -39,7 +39,7 @@ export default function signup() {
       Number: "",
       PontyCode: "",
       confirmPassword: "",
-      Apply: 1,
+      Apply: 12,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -54,9 +54,8 @@ export default function signup() {
         apply: values.Apply * 1, // Mengonversi string ke angka
         confirmPassword: values.confirmPassword,
       };
-      dispatch(userSignupReq(payload));
-      console.log("data payload", payload);
-
+      dispatch(employeeSignupReq(payload));
+      // console.log("data payload", payload);
       router.push("/signin");
     },
   });
@@ -171,7 +170,6 @@ export default function signup() {
                 </span>
               ) : null}
             </div>
-
             <div className="w-full md:w-full px-3 mb-6">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -199,7 +197,6 @@ export default function signup() {
                 </span>
               ) : null}
             </div>
-
             <div className="w-full md:w-full px-3 mb-6">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -230,7 +227,7 @@ export default function signup() {
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 htmlFor="Password"
               >
-                Apply For
+                Role Type
               </label>
               <select
                 id="Apply"
@@ -238,12 +235,11 @@ export default function signup() {
                 value={formik.values.Apply}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                autoComplete="Apply"
+                autoComplete="RoleId"
                 className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
                 placeholder="Apply For"
               >
-                <option value={1}>Bootcamp</option>
-                <option value={2}>Jobs</option>
+                <option value={12}>Employee</option>
               </select>
               {formik.touched.Apply && formik.errors.Apply ? (
                 <span className="mt-2 text-sm text-red-600">
@@ -311,8 +307,8 @@ export default function signup() {
               </button>
               <div className="flex justify-center mt-3">
                 <p className="text-black">
-                  If you are an employee, click{" "}
-                  <Link href="/signupEmployee">
+                  If you are apply for bootcamp or jobs, click{" "}
+                  <Link href="/signup">
                     <span className="font-semibold">here</span>
                   </Link>
                 </p>
