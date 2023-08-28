@@ -149,7 +149,7 @@ export default function LandingPage(props: { children: any; }) {
                                         )}
                                     </Popover>
 
-                                    <Link href="talent" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                                    <Link href="hr/talent" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                         Talents
                                     </Link>
                                     <Link href="bootcamp" className="text-base font-medium text-gray-500 hover:text-gray-900">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import Layout from '../components/layout/Layout';
+import Layout from '@/pages/components/layout/Layout';
 import { GetEmployeeReq } from "@/redux-saga/action/employeeAction";
 import Link from 'next/link';
 import { IconButton, Typography } from "@material-tailwind/react";

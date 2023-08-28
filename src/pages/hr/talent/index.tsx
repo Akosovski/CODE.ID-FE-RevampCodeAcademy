@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import Layout from '../components/layout/Layout';
+import Layout from '@/pages/components/layout/Layout';
 import { GetTalentReq, SearchTalentReq, EditStatusReq } from "@/redux-saga/action/talentAction";
 import Image from 'next/image';
 import profile from '@/pages/images/dummy_profile.png';

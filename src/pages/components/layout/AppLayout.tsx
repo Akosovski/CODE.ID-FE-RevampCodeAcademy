@@ -49,14 +49,14 @@ const navigation = [
   },
   {
     name: "Talent",
-    href: "/talent",
+    href: "/hr/talent",
     icon: UserGroupIcon,
     current: false,
     roles: ["Administrator", "Recruiter", "Instructor", "Sales"],
   },
   {
     name: "Employee",
-    href: "/employee",
+    href: "/hr/employee",
     icon: UserGroupIcon,
     current: false,
     roles: ["Administrator", "Recruiter", "Sales"],
